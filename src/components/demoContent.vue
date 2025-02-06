@@ -145,7 +145,7 @@ const searchPhone = () => {
   const phone = findPhone(inputValue.value);
 
   if (!phone) {
-    errorMessage.value = "ไม่พบเบอร์นี้ในฐานข้อมูล";
+    errorMessage.value = "ไม่พบเบอร์นี้";
   } else {
     if (!foundPhones.value.some((p) => p.phone === phone.phone)) {
       foundPhones.value.push(phone); // Add phone to foundPhones if not already added
