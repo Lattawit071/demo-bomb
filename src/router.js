@@ -1,16 +1,12 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Login from "./components/login.vue";
-import Menu from "./components/menu.vue";
-import Sale from "./components/sale.vue"; // เพิ่มหน้า Sale
-import Service from "./components/service.vue"; // เพิ่มหน้า Service
-import Retention from "./components/retention.vue"; // เพิ่มหน้า Retention
+import demoTop from "./components/demoTop.vue";
+import demoContent from "./components/demoContent.vue";
 
 const routes = [
   { path: "/", component: Login },
-  { path: "/menu", component: Menu },
-  { path: "/sale", component: Sale }, // กำหนดเส้นทางสำหรับหน้า Sale
-  { path: "/service", component: Service }, // กำหนดเส้นทางสำหรับหน้า Service
-  { path: "/retention", component: Retention }, // กำหนดเส้นทางสำหรับหน้า Retention
+  { path: "/demoTop", component: demoTop },
+  { path: "/demoContent", component: demoContent },
 ];
 
 const router = createRouter({
