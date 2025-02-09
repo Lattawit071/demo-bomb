@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import demoContent from "./demoContent.vue";
+import demoContent from "./Content.vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
@@ -21,8 +21,8 @@ const goHome = () => {
 </script>
 
 <template>
-  <div>
-    <div class="border flex items-center p-3 relative">
+  <div class="border-b-2 border-gray-300 shadow-md">
+    <div class="flex items-center p-3 relative">
       <div @click="menuOpen = !menuOpen" class="cursor-pointer text-xl px-3">
         ☰
       </div>
@@ -136,7 +136,6 @@ const goHome = () => {
         </div>
       </div>
     </div>
-    <demoContent class="mb-50" />
   </div>
 </template>
 

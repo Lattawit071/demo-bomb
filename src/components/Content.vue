@@ -1,3 +1,69 @@
+<script setup>
+import { ref } from "vue";
+import { phoneUsers, findPhone, filterPhones } from "@/js/phonedb";
+
+// Define state variables
+const selected = ref("ALL");
+const inputValue = ref("");
+const errorMessage = ref("");
+const foundPhones = ref([]); // This keeps the data fetched by the search
+const filteredPhones = ref([]); // This keeps the filtered data based on status
+const searchPerformed = ref(false);
+
+const searchPhone = () => {
+  if (!inputValue.value) {
+    errorMessage.value = "กรุณากรอกข้อมูล";
+    return;
+  }
+
+  const phone = findPhone(inputValue.value);
+
+  if (!phone) {
+    errorMessage.value = "ไม่พบเบอร์นี้";
+  } else {
+    if (!foundPhones.value.some((p) => p.phone === phone.phone)) {
+      foundPhones.value.push(phone);
+    }
+    filteredPhones.value = foundPhones.value;
+    errorMessage.value = "";
+  }
+
+  applyFilter(selected.value);
+
+  searchPerformed.value = true;
+};
+
+const clearInput = () => {
+  inputValue.value = "";
+  errorMessage.value = "";
+};
+
+const toggleSelection = (status) => {
+  selected.value = status;
+  applyFilter(status);
+};
+
+// Apply filter based on the status
+const applyFilter = (status) => {
+  if (status === "ALL") {
+    filteredPhones.value = foundPhones.value;
+  } else {
+    filteredPhones.value = foundPhones.value.filter(
+      (phone) => phone.status === status.toLowerCase()
+    );
+  }
+};
+
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+
+const goToPhoneDetail = (phone) => {
+  // ส่ง phoneId ไปใน URL ของ PhoneDetail
+  router.push({ name: "phoneDetail", params: { phoneId: phone.phone } });
+};
+</script>
+
 <template>
   <div>
     <div class="border border-gray-300 mx-4">
@@ -40,16 +106,15 @@
           อ่านบัตร
         </button>
       </div>
-      <!-- Toggle buttons for search results -->
-      <div class="border border-gray-200">
+
+      <div v-if="foundPhones.length" class="border border-gray-200 sas">
         <div class="flex p-2">
           <img src="/search.png" class="w-5 h-5" alt="Task" />
           <p class="ml-3 text-sm font-semibold">
             ผลการค้นหา({{ filteredPhones.length }})
           </p>
         </div>
-        <div class="border p-2 flex justify-center">
-          <!-- ALL button (rounded left) -->
+        <div class="p-2 flex justify-center">
           <button
             @click="toggleSelection('ALL')"
             :class="
@@ -61,7 +126,6 @@
           >
             ALL
           </button>
-          <!-- ACTIVE button (no rounding) -->
           <button
             @click="toggleSelection('ACTIVE')"
             :class="
@@ -73,7 +137,6 @@
           >
             ACTIVE
           </button>
-          <!-- INACTIVE button (rounded right) -->
           <button
             @click="toggleSelection('INACTIVE')"
             :class="
@@ -87,111 +150,41 @@
           </button>
         </div>
       </div>
+
       <!-- Show phone content if phones are found -->
       <div
         v-if="filteredPhones.length"
-        class="show-content border border-red-400 p-3 mt-4"
+        class="show-content bg-[#f7f7f7] p-3 mt-4"
       >
-        <!-- Loop through filteredPhones to display each phone result in separate div -->
         <div
           v-for="(phone, index) in filteredPhones"
           :key="index"
-          @click="selectPhone(phone)"
+          @click="goToPhoneDetail(phone)"
           :class="{
-            'bg-gray-100': clickedPhone === phone,
             'mt-4 border p-3 rounded-md border-gray-300 shadow-md': true,
           }"
         >
           <img src="/phone.png" class="w-8 h-8" alt="Phone Icon" />
-          <p>เบอร์: {{ phone.phone }}</p>
+          <p>{{ phone.phone }}</p>
           <div class="flex justify-between">
-            <p class="text-yellow-400">{{ phone.info1 }}</p>
+            <p class="text-yellow-400">{{ phone.type }}</p>
             <div
               class="flex border border-gray-400 rounded-lg p-1 gap-2 text-sm"
             >
               <img src="/user.png" class="w-5 h-5" alt="User Icon" />
-              <p>{{ phone.info2 }}</p>
+              <p>{{ phone.name }}</p>
             </div>
           </div>
-          <p>({{ phone.info3 }})</p>
-          <p>{{ phone.status === "active" ? "Active" : "Inactive" }}</p>
+          <p>(Prepay)</p>
+          <p
+            class="bg-gray-300 text-gray-800 rounded px-1 py-0.5 inline-block mt-2"
+          >
+            {{ phone.status === "active" ? "Active" : "Inactive" }}
+          </p>
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<script setup>
-import { ref } from "vue";
-import { phoneUsers, findPhone, filterPhones } from "@/js/phonedb";
-
-// Define state variables
-const selected = ref("ALL");
-const inputValue = ref("");
-const errorMessage = ref("");
-const foundPhones = ref([]); // This keeps the data fetched by the search
-const filteredPhones = ref([]); // This keeps the filtered data based on status
-const searchPerformed = ref(false);
-const clickedPhone = ref(null);
-
-// Search phone
-const searchPhone = () => {
-  if (!inputValue.value) {
-    errorMessage.value = "กรุณากรอกข้อมูล";
-    return;
-  }
-
-  // Use the findPhone function from your mock database
-  const phone = findPhone(inputValue.value);
-
-  if (!phone) {
-    errorMessage.value = "ไม่พบเบอร์นี้";
-  } else {
-    if (!foundPhones.value.some((p) => p.phone === phone.phone)) {
-      foundPhones.value.push(phone); // Add phone to foundPhones if not already added
-    }
-    filteredPhones.value = foundPhones.value; // Initial display all phones
-    errorMessage.value = "";
-  }
-
-  // Reapply the filter based on the selected status after search
-  applyFilter(selected.value);
-
-  searchPerformed.value = true;
-};
-
-// Clear input field
-const clearInput = () => {
-  inputValue.value = ""; // Clear the input
-  errorMessage.value = ""; // Clear any error message
-  // Don't clear foundPhones or filteredPhones, so previous search results remain
-};
-
-// Toggle selection (ALL, ACTIVE, INACTIVE)
-const toggleSelection = (status) => {
-  selected.value = status;
-  applyFilter(status); // Reapply the filter based on the selected status
-};
-
-// Apply filter based on the status
-const applyFilter = (status) => {
-  if (status === "ALL") {
-    filteredPhones.value = foundPhones.value; // Show all when 'ALL' is selected
-  } else {
-    filteredPhones.value = foundPhones.value.filter(
-      (phone) => phone.status === status.toLowerCase()
-    );
-  }
-};
-
-// Select phone (for display or selection logic)
-const selectPhone = (phone) => {
-  clickedPhone.value = phone;
-};
-</script>
-
-<style scoped>
-.show-content {
-  background-color: #f7f7f7;
-}
-</style>
+<style scoped></style>
