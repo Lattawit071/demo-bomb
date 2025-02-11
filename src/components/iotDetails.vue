@@ -26,12 +26,12 @@
       <div>
         <div
           v-if="selectedUser"
-          class="flex flex-wrap gap-3 p-5 justify-start border border-gray-300 bg-red-100"
+          class="flex flex-wrap gap-3 p-5 justify-start border border-gray-300"
         >
           <div
             v-for="(hasDevice, device) in filteredDevices"
             :key="device"
-            class="flex flex-col items-center bg-white rounded-lg w-20 max-w-[130px] min-w-[100px] shrink-0 cursor-pointer"
+            class="flex flex-col items-center border border-gray-200 bg-white rounded-lg w-20 max-w-[130px] min-w-[100px] shrink-0 cursor-pointer"
           >
             <router-link
               :to="{
