@@ -1,7 +1,22 @@
 <script setup>
 import { ref } from "vue";
-import demoContent from "./Content.vue";
-import { useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
+import { findPhone } from "@/js/phonedb"; // นำเข้า findPhone จาก phonedb.js
+
+const route = useRoute();
+const phoneId = route.params.phoneId; // ดึงค่า phoneId จาก URL
+
+// ตัวแปรเก็บข้อมูลเบอร์โทร
+const phoneDetails = ref({});
+
+const fetchPhoneDetails = () => {
+  const phoneData = findPhone(phoneId); // ใช้ฟังก์ชั่น findPhone
+  if (phoneData) {
+    phoneDetails.value = phoneData;
+  } else {
+    phoneDetails.value = { message: "ข้อมูลเบอร์โทรไม่พบ" }; // กรณีไม่พบข้อมูล
+  }
+};
 
 const router = useRouter();
 
@@ -27,23 +42,28 @@ const goHome = () => {
         ☰
       </div>
       <div class="flex items-center space-x-2 flex-grow">
-        <div class="flex gap-2">
+        <router-link to="/demo" class="flex gap-2">
           <p class="text-red-600 text-2xl font-bold uppercase">CRM</p>
           <p class="text-2xl font-semibold text-pink-400 ml-auto">Lite</p>
-        </div>
-
-        <!-- Lite อยู่ขวาสุด -->
+        </router-link>
       </div>
-      <div class="flex ml-auto">
-        <button @click="goHome" class="text-sm text-gray-700">Home</button>
-        <!-- ปุ่ม Home -->
+      <div class="flex ml-auto gap-3 pt-6">
+        <div
+          class="pt-1 px-2 border rounded-full flex items-center gap-2 bg-gray-200 ml-3 md:ml-0"
+        >
+          <img src="/emoji.png" class="h-4 w-4" />
+          <p class="text-xs text-gray-700">พีระนาคิน ไวตระกูล</p>
+        </div>
+        <button @click="goHome" class="text-xs text-gray-700">
+          <img src="/home.png" class="h-5 w-5" alt="Home" />
+        </button>
       </div>
       <div
         v-if="menuOpen"
         class="fixed top-0 left-0 w-3/4 h-full bg-white shadow-lg border-r border-gray-200 transition-all transform duration-300 ease-in-out"
       >
         <div class="mt-7 px-6">
-          <p class="text-base font-semibold">Firstname Lastname</p>
+          <p class="text-base font-semibold">พีระนาคิน ไวตระกูล</p>
           <p class="text-gray-700 text-sm">12345678</p>
           <p class="text-gray-700 text-sm">TEAM_USER TS80000199</p>
           <div class="mt-2">

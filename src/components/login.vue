@@ -19,7 +19,7 @@ const login = () => {
       localStorage.removeItem("savedUsername");
       localStorage.removeItem("savedPassword");
     }
-    router.push("/test");
+    router.push("/demo");
   } else {
     message.value = "Invalid username or password. Please try again.";
   }

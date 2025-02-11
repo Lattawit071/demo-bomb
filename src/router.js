@@ -3,23 +3,65 @@ import Login from "./components/login.vue";
 import demoTop from "./components/Header.vue";
 import demoContent from "./components/Content.vue";
 import phoneDetails from "./components/phoneDetails.vue";
-import test from "./components/demo.vue";
+import demo from "./components/demo.vue";
+import iotDetails from "./components/iotDetails.vue";
+import routerDevice from "./components/routerDevice.vue";
+import cctvDevice from "./components/cctvDevice.vue";
+import trueIDBoxDevice from "./components/trueIDBoxDevice.vue";
+import irRemoteDevice from "./components/irRemoteDevice.vue";
+import meshDevice from "./components/meshDevice.vue";
 
 const routes = [
   { path: "/", component: Login },
   { path: "/demoTop", component: demoTop },
   { path: "/demoContent", component: demoContent },
   {
-    path: "/phone-detail/:phoneId", // ใช้ :phoneId เพื่อรับข้อมูลจาก URL
+    path: "/phone-detail/:phoneId",
     name: "phoneDetail",
     component: phoneDetails,
-    props: true, // จะส่ง phoneId ให้กับ component ใน prop
+    props: true,
   },
   {
-    path: "/test", // เพิ่ม route สำหรับ test.vue
-    name: "test",
-    component: test,
-    props: true, // ส่ง phoneId ไปที่ component
+    path: "/phone-detail/:phoneId/iot-devices",
+    component: iotDetails,
+    props: true,
+  },
+  {
+    path: "/phone-detail/:phoneId/iot-devices/router-wifi",
+    name: "routerDevice",
+    component: routerDevice,
+    props: true,
+  },
+  {
+    path: "/phone-detail/:phoneId/iot-devices/กล้อง-cctv",
+    name: "cctvDevice",
+    component: cctvDevice,
+    props: true,
+  },
+  {
+    path: "/phone-detail/:phoneId/iot-devices/mesh-wifi",
+    name: "meshDevice",
+    component: meshDevice,
+    props: true,
+  },
+  {
+    path: "/phone-detail/:phoneId/iot-devices/ir-remote-control",
+    name: "irDevice",
+    component: irRemoteDevice,
+    props: true,
+  },
+  {
+    path: "/phone-detail/:phoneId/iot-devices/trueIDBox",
+    name: "trueoxDevice",
+    component: trueIDBoxDevice,
+    props: true,
+  },
+
+  {
+    path: "/demo",
+    name: "demo",
+    component: demo,
+    props: true,
   },
 ];
 

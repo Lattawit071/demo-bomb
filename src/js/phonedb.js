@@ -11,6 +11,13 @@ export const phoneUsers = [
     scoring: "สามารถขายทำการขายได้",
     arpa: "THB 15.00",
     empowerment: "เกรด B | วงเงินต่อปี 1500",
+    devices: {
+      "Router WiFi": true,
+      "กล้อง CCTV": false,
+      "Mesh WiFi": true,
+      "True ID Box": false,
+      "IR Remote Control": true,
+    },
   },
   {
     phone: "0912345678",
@@ -24,6 +31,13 @@ export const phoneUsers = [
     scoring: "ไม่สามารถขายทำการขายได้",
     arpa: "THB 10.00",
     empowerment: "เกรด D | วงเงินต่อปี 500",
+    devices: {
+      "Router WiFi": true,
+      "กล้อง CCTV": false,
+      "Mesh WiFi": true,
+      "True ID Box": false,
+      "IR Remote Control": true,
+    },
   },
   {
     phone: "0923456789",
@@ -37,6 +51,13 @@ export const phoneUsers = [
     scoring: "สามารถขายทำการขายได้",
     arpa: "THB 25.00",
     empowerment: "เกรด A | วงเงินต่อปี 2000",
+    devices: {
+      "Router WiFi": true,
+      "กล้อง CCTV": false,
+      "Mesh WiFi": true,
+      "True ID Box": false,
+      "IR Remote Control": true,
+    },
   },
   {
     phone: "0934567890",
@@ -50,6 +71,13 @@ export const phoneUsers = [
     scoring: "สามารถขายทำการขายได้",
     arpa: "THB 20.00",
     empowerment: "เกรด B | วงเงินต่อปี 1200",
+    devices: {
+      "Router WiFi": true,
+      "กล้อง CCTV": false,
+      "Mesh WiFi": true,
+      "True ID Box": false,
+      "IR Remote Control": true,
+    },
   },
   {
     phone: "0945678901",
@@ -63,6 +91,13 @@ export const phoneUsers = [
     scoring: "สามารถขายทำการขายได้",
     arpa: "THB 23.33",
     empowerment: "เกรด C | วงเงินต่อปี 1000",
+    devices: {
+      "Router WiFi": true,
+      "กล้อง CCTV": false,
+      "Mesh WiFi": true,
+      "True ID Box": false,
+      "IR Remote Control": true,
+    },
   },
   {
     phone: "0956789012",
@@ -76,6 +111,13 @@ export const phoneUsers = [
     scoring: "สามารถขายทำการขายได้",
     arpa: "THB 30.00",
     empowerment: "เกรด B | วงเงินต่อปี 1500",
+    devices: {
+      "Router WiFi": true,
+      "กล้อง CCTV": false,
+      "Mesh WiFi": true,
+      "True ID Box": false,
+      "IR Remote Control": true,
+    },
   },
   {
     phone: "0967890123",
@@ -89,6 +131,13 @@ export const phoneUsers = [
     scoring: "สามารถขายทำการขายได้",
     arpa: "THB 28.00",
     empowerment: "เกรด A | วงเงินต่อปี 1800",
+    devices: {
+      "Router WiFi": true,
+      "กล้อง CCTV": false,
+      "Mesh WiFi": true,
+      "True ID Box": false,
+      "IR Remote Control": true,
+    },
   },
   {
     phone: "0978901234",
@@ -102,6 +151,13 @@ export const phoneUsers = [
     scoring: "สามารถขายทำการขายได้",
     arpa: "THB 22.50",
     empowerment: "เกรด C | วงเงินต่อปี 1100",
+    devices: {
+      "Router WiFi": true,
+      "กล้อง CCTV": false,
+      "Mesh WiFi": true,
+      "True ID Box": false,
+      "IR Remote Control": true,
+    },
   },
   {
     phone: "0989012345",
@@ -115,6 +171,13 @@ export const phoneUsers = [
     scoring: "สามารถขายทำการขายได้",
     arpa: "THB 18.00",
     empowerment: "เกรด B | วงเงินต่อปี 1600",
+    devices: {
+      "Router WiFi": true,
+      "กล้อง CCTV": false,
+      "Mesh WiFi": true,
+      "True ID Box": false,
+      "IR Remote Control": true,
+    },
   },
   {
     phone: "0990123456",
@@ -128,6 +191,13 @@ export const phoneUsers = [
     scoring: "สามารถขายทำการขายได้",
     arpa: "THB 27.00",
     empowerment: "เกรด C | วงเงินต่อปี 1300",
+    devices: {
+      "Router WiFi": true,
+      "กล้อง CCTV": false,
+      "Mesh WiFi": true,
+      "True ID Box": false,
+      "IR Remote Control": true,
+    },
   },
 ];
 
@@ -141,4 +211,25 @@ export function filterPhones(status, foundPhones) {
   } else {
     return foundPhones.filter((user) => user.status === status); // กรองตามสถานะ
   }
+}
+
+export function getUserDevicesByCategory(phone, category) {
+  const user = phoneUsers.find((user) => user.phone === phone);
+  if (!user) return {};
+
+  const categoryDevices = {
+    convenience: [
+      "Router WiFi",
+      "กล้อง CCTV",
+      "Mesh WiFi",
+      "IR Remote Control",
+    ],
+    security: ["Router WiFi", "กล้อง CCTV"],
+  };
+
+  return Object.fromEntries(
+    Object.entries(user.devices).filter(([device]) =>
+      categoryDevices[category]?.includes(device)
+    )
+  );
 }

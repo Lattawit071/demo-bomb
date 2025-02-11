@@ -50,9 +50,9 @@
             <p class="font-medium mt-2">Account Info</p>
           </div>
           <div
-            class="flex gap-1 border border-white bg-red-400 text-white rounded-md px-2 py-1 items-center"
+            class="flex gap-1 border border-white bg-red-400 text-white rounded-md px-2 py-1 items-center text-xs"
           >
-            <img src="/pen.png" class="w-5 h-5" />
+            <img src="/pen.png" class="w-4 h-4" />
             <p>Edit</p>
           </div>
         </div>
@@ -78,6 +78,47 @@
           >
             Customer Balance
           </p>
+        </div>
+
+        <div class="border-t-2 pt-4 mt-4 border-gray-300 border kuy">
+          <router-link
+            :to="`/phone-detail/${phoneId}/iot-devices`"
+            class="w-full h-full"
+          >
+            <div class="flex justify-between items-center px-3">
+              <div class="flex items-center gap-2">
+                <img src="/setting.jpg" class="w-6 h-6" />
+                <p class="font-medium text-gray-700">IOT Device</p>
+              </div>
+              <img src="/skip.png" class="w-6 h-6 cursor-pointer" />
+            </div>
+            <div class="p-4 overflow-x-auto">
+              <div class="flex gap-4 md:flex-nowrap">
+                <div
+                  v-for="(img, name) in {
+                    'Router WiFi': '/4.jpg',
+                    'กล้อง CCTV': '/3.jpg',
+                    'Mesh WiFi': '/1.jpg',
+                    'True ID Box': '/2.jpg',
+                    'IR Remote ': '/5.jpg',
+                  }"
+                  :key="name"
+                  class="flex flex-col items-center p-2 min-w-[100px]"
+                >
+                  <img :src="img" class="w-12 h-12" />
+                  <div class="flex items-center gap-2 mt-2">
+                    <p class="text-xs text-gray-600">{{ name }}</p>
+                    <div
+                      class="w-2 h-2 rounded-full"
+                      :class="
+                        deviceStatus[name] ? 'bg-green-500' : 'bg-gray-400'
+                      "
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </router-link>
         </div>
 
         <div class="mt-5 border-b-2 border-gray-300 pb-4">
@@ -196,7 +237,7 @@
 import demoTop from "./Header.vue";
 import { useRoute, useRouter } from "vue-router";
 import { ref, onMounted } from "vue";
-import { findPhone } from "@/js/phonedb"; // นำเข้า findPhone จาก phonedb.js
+import { findPhone, phoneUsers } from "@/js/phonedb"; // นำเข้า findPhone จาก phonedb.js
 
 const router = useRouter();
 const route = useRoute();
@@ -204,6 +245,12 @@ const phoneId = route.params.phoneId; // ดึงค่า phoneId จาก UR
 
 // ตัวแปรเก็บข้อมูลเบอร์โทร
 const phoneDetails = ref({});
+const deviceStatus = ref({});
+
+const fetchDeviceStatus = () => {
+  const user = phoneUsers.find((user) => user.phone === phoneId);
+  deviceStatus.value = user?.devices || {};
+};
 
 const fetchPhoneDetails = () => {
   const phoneData = findPhone(phoneId); // ใช้ฟังก์ชั่น findPhone
@@ -214,11 +261,12 @@ const fetchPhoneDetails = () => {
   }
 };
 const goToTestPage = () => {
-  router.push("/test");
+  router.push("/demo");
 };
 // ใช้ onMounted เพื่อดึงข้อมูลเมื่อคอมโพเนนต์ถูก mount
 onMounted(() => {
   fetchPhoneDetails();
+  fetchDeviceStatus();
 });
 
 // สำหรับการเปิด/ปิด dropdown
