@@ -85,12 +85,12 @@ const filteredDevices = computed(() =>
 // ฟังก์ชันในการจับคู่ device กับ icon
 const getDeviceIcon = (device) => {
   const iconMap = {
-    "Router WiFi": "1.jpg",
-    "กล้อง CCTV": "2.jpg",
-    "Mesh WiFi": "3.jpg",
-    "IR Remote Control": "4.jpg",
+    "Router WiFi": "4.jpg",
+    "กล้อง CCTV": "3.jpg",
+    "Mesh WiFi": "1.jpg",
+    "IR Remote Control": "5.jpg",
   };
-  return `/${iconMap[device] || "5.jpg"}`;
+  return `/${iconMap[device] || "2.jpg"}`;
 };
 
 // เมื่อ mounted, ค้นหาผู้ใช้จาก phoneId
