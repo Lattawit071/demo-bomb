@@ -180,13 +180,40 @@
         </div>
         <div
           v-if="isCheckedRight || (isCheckedLeft && isAnyChecked)"
-          class="flex justify-center mt-4"
+          class="mt-4"
         >
-          <p
-            class="font-bold text-white bg-gradient-to-r from-pink-500 to-pink-700 rounded-lg px-4 py-2 cursor-pointer hover:bg-gradient-to-r hover:from-pink-600 hover:to-pink-800 transition-all duration-300"
-          >
-            ซื้อเลย
-          </p>
+          <div class="flex flex-col items-center">
+            <button
+              type="button"
+              class="font-bold text-white bg-gradient-to-r from-pink-500 to-pink-700 rounded-lg px-6 py-3 cursor-pointer hover:bg-gradient-to-r hover:from-pink-600 hover:to-pink-800 transition-all duration-300 shadow-md"
+            >
+              ซื้อเลย
+            </button>
+            <div
+              class="mt-4 w-full max-w-lg border border-gray-300 rounded-lg p-4 bg-white shadow-sm"
+            >
+              <p class="text-lg font-bold text-gray-800 mb-2">
+                รายละเอียดสินค้า
+              </p>
+              <p class="text-md font-semibold text-gray-700 mb-1">
+                กล้องวงจรปิดอัจฉริยะ
+              </p>
+              <div class="text-sm space-y-1">
+                <p>TrueLivingTECH Smart CCTV Camera 1080P</p>
+                <p>ความละเอียด Full HD 1920 x 1080P H.264 High Profile</p>
+                <p>รองรับ Night Vision Mode ระยะทำงาน 8 เมตร</p>
+                <p>หมุนได้ 355° แนวนอน และ 110° แนวตั้ง</p>
+                <p>ลำโพงในตัว รองรับ Two-Way Audio (Built-in MIC & Speaker)</p>
+                <p>รองรับการเชื่อมต่อไร้สายผ่าน Wi-Fi 2.4 GHz</p>
+                <p>ตรวจจับความเคลื่อนไหวด้วย Motion Detection Alarm</p>
+                <p>แจ้งเตือนไปยัง Application โดยอัตโนมัติ</p>
+                <p>บันทึกวิดีโอผ่าน MicroSD Card (สูงสุด 128GB)</p>
+                <p>รองรับการบันทึกผ่าน Cloud Service (อาจมีค่าบริการ)</p>
+                <p>แจ้งเตือนและดูแบบเรียลไทม์ผ่าน Application</p>
+                <p class="font-semibold">รับประกันสินค้า 24 เดือน</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
