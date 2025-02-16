@@ -22,7 +22,7 @@ export const phoneUsers = [
   {
     phone: "0912345678",
     status: "inactive",
-    type: "AIS",
+    type: "อื่นๆ",
     name: "สุรีย์พร ทองใบ",
     grading: "yellow",
     idno: "xxxxxxxxx0456",
@@ -62,7 +62,7 @@ export const phoneUsers = [
   {
     phone: "0934567890",
     status: "inactive",
-    type: "AIS",
+    type: "อื่นๆ",
     name: "ภาคิน คำภา",
     grading: "green",
     idno: "xxxxxxxxx0890",
@@ -122,7 +122,7 @@ export const phoneUsers = [
   {
     phone: "0967890123",
     status: "active",
-    type: "AIS",
+    type: "อื่นๆ",
     name: "วรากร ชัยมงคล",
     grading: "purple",
     idno: "xxxxxxxxx1456",
@@ -162,7 +162,7 @@ export const phoneUsers = [
   {
     phone: "0989012345",
     status: "active",
-    type: "AIS",
+    type: "อื่นๆ",
     name: "ภูริทัต เชื้อผา",
     grading: "blue",
     idno: "xxxxxxxxx2345",

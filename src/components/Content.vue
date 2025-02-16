@@ -175,7 +175,7 @@ const goToPhoneDetail = (phone) => {
               <p>{{ phone.name }}</p>
             </div>
           </div>
-          <p>(Prepay)</p>
+          <p>(Postpay)</p>
           <p
             class="bg-gray-300 text-gray-800 rounded px-1 py-0.5 inline-block mt-2"
           >

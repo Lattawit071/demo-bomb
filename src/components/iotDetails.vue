@@ -73,7 +73,7 @@ const route = useRoute();
 const router = useRouter();
 const selectedPhone = ref(route.params.phoneId); // ใช้ route.params.phoneId
 const selectedUser = ref(null);
-const selectedCategory = ref(null);
+const selectedCategory = ref("convenience");
 
 // ฟังก์ชันในการกรอง devices ตาม category ที่เลือก
 const filteredDevices = computed(() =>

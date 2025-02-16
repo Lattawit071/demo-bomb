@@ -220,7 +220,7 @@
             </div>
           </div>
         </div>
-        <div class="border">
+        <div class="flex justify-center mt-3">
           <button
             @click="goToTestPage"
             class="bg-blue-500 text-white p-2 rounded hover:bg-blue-600"

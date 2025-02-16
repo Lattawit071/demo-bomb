@@ -3,39 +3,19 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { authenticate } from "/src/js/userpass";
 
-const username = ref("");
-const password = ref("");
-const rememberMe = ref(false);
+const username = ref("12345678");
+const password = ref("12345678");
 const message = ref("");
 const showPassword = ref(false);
 const router = useRouter();
 
 const login = () => {
   if (authenticate(username.value, password.value)) {
-    if (rememberMe.value) {
-      localStorage.setItem("savedUsername", username.value);
-      localStorage.setItem("savedPassword", password.value);
-    } else {
-      localStorage.removeItem("savedUsername");
-      localStorage.removeItem("savedPassword");
-    }
     router.push("/demo");
   } else {
     message.value = "Invalid username or password. Please try again.";
   }
 };
-
-const loadSavedCredentials = () => {
-  const savedUsername = localStorage.getItem("savedUsername");
-  const savedPassword = localStorage.getItem("savedPassword");
-  if (savedUsername && savedPassword) {
-    username.value = savedUsername;
-    password.value = savedPassword;
-    rememberMe.value = true;
-  }
-};
-
-loadSavedCredentials();
 </script>
 
 <template>
@@ -45,6 +25,7 @@ loadSavedCredentials();
     >
       <img src="/logo.png" alt="Logo" class="w-32 h-32 object-contain mb-6" />
 
+      <!-- Username Field -->
       <input
         v-model="username"
         type="text"
@@ -68,22 +49,9 @@ loadSavedCredentials();
         </span>
       </div>
 
-      <!-- Remember Me Checkbox -->
-      <div class="flex items-center w-full my-4">
-        <input
-          id="rememberMe"
-          type="checkbox"
-          v-model="rememberMe"
-          class="mr-2"
-        />
-        <label for="rememberMe" class="text-gray-600 text-sm"
-          >Remember Me</label
-        >
-      </div>
-
       <button
         @click="login"
-        class="w-full bg-red-600 text-white py-3 rounded-md hover:bg-red-700 transition font-semibold"
+        class="w-full bg-red-600 text-white py-3 rounded-md hover:bg-red-700 transition font-semibold mt-4"
       >
         Sign In
       </button>

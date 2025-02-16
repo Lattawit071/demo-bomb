@@ -10,11 +10,18 @@ import cctvDevice from "./components/cctvDevice.vue";
 import trueIDBoxDevice from "./components/trueIDBoxDevice.vue";
 import irRemoteDevice from "./components/irRemoteDevice.vue";
 import meshDevice from "./components/meshDevice.vue";
+import CustomerFooter from "./components/CustomerFooter.vue";
+import CustomerPage from "./components/CustomerPage.vue";
 
 const routes = [
   { path: "/", component: Login },
   { path: "/demoTop", component: demoTop },
   { path: "/demoContent", component: demoContent },
+  {
+    path: "/customerPage",
+    name: "CustomerPage",
+    component: CustomerPage,
+  },
   {
     path: "/phone-detail/:phoneId",
     name: "phoneDetail",
