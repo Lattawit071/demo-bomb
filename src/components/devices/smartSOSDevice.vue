@@ -1,5 +1,5 @@
 <template>
-  <div class="mb-70">
+  <div v-if="noDetails" class="mb-70">
     <Header />
     <div class="mx-2">
       <div class="pic flex justify-center items-center mt-10">
@@ -191,12 +191,28 @@
       </div>
     </div>
   </div>
+  <div class="flex items-center justify-center min-h-screen bg-gray-100">
+    <div
+      class="text-center font-bold text-white bg-blue-500 p-6 border-4 border-blue-700 rounded-lg shadow-lg"
+    >
+      ยังไม่ได้ทำงับอิอิ
+      <button
+        @click="someFunction"
+        class="mt-4 text-white bg-red-500 hover:bg-red-700 px-4 py-2 rounded"
+      >
+        กลับ
+      </button>
+    </div>
+  </div>
 </template>
 
 <script setup>
 import Header from "../Header.vue";
 import { ref, computed } from "vue";
-
+const noDetails = ref(false);
+function someFunction() {
+  window.history.back();
+}
 // สถานะของกล่องด้านซ้าย
 const isCheckedLeft = ref(false);
 const toggleCheckLeft = () => {

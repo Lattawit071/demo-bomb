@@ -26,7 +26,7 @@
       <div>
         <div
           v-if="selectedUser"
-          class="flex flex-wrap gap-3 p-5 justify-start border border-gray-300"
+          class="flex flex-wrap gap-3 p-5 justify-start border border-gray-300 bg-red-200"
         >
           <div
             v-for="(hasDevice, device) in filteredDevices"
@@ -90,12 +90,12 @@ const getDeviceIcon = (device) => {
   const iconMap = {
     "Router WiFi": "4.jpg",
     "กล้อง CCTV": "3.jpg",
+    "Smart SoS Button": "9.jpg",
     "Mesh WiFi": "1.jpg",
     "IR Remote Control": "5.jpg",
     "Smart Motion Sensor": "6.jpg",
     "Door Windows Sensor": "7.jpg",
     "Smart Siren": "8.jpg",
-    "Smart SoS Button": "9.jpg",
   };
   return `/${iconMap[device] || "2.jpg"}`;
 };
