@@ -194,7 +194,7 @@
 </template>
 
 <script setup>
-import Header from "./Header.vue";
+import Header from "../Header.vue";
 import { ref, computed } from "vue";
 
 // สถานะของกล่องด้านซ้าย

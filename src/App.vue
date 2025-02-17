@@ -1,6 +1,6 @@
 <template>
   <router-view></router-view>
-  <CustomerPage />
+  <!-- <CustomerPage /> -->
 </template>
 
 <script setup>

@@ -3,7 +3,7 @@
     <Header />
     <div class="mx-2">
       <div class="pic flex justify-center items-center mt-10">
-        <img src="/2.jpg" class="w-2/4" />
+        <img src="/9.jpg" class="w-2/4" />
       </div>
       <div class="mt-4">
         <p class="p-2">โปรชั่นทั่วไป</p>
@@ -194,7 +194,7 @@
 </template>
 
 <script setup>
-import Header from "./Header.vue";
+import Header from "../Header.vue";
 import { ref, computed } from "vue";
 
 // สถานะของกล่องด้านซ้าย

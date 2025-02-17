@@ -101,6 +101,10 @@
                     'Mesh WiFi': '/1.jpg',
                     'True ID Box': '/2.jpg',
                     'IR Remote ': '/5.jpg',
+                    'Smart Motion Sensor': '/6.jpg',
+                    'Door Windows Sensor': '/7.jpg',
+                    'Smart Siren': '/8.jpg',
+                    'Smart SoS Button': '/9.jpg',
                   }"
                   :key="name"
                   class="flex flex-col items-center p-2 min-w-[100px]"
@@ -109,7 +113,7 @@
                   <div class="flex items-center gap-2 mt-2">
                     <p class="text-xs text-gray-600">{{ name }}</p>
                     <div
-                      class="w-2 h-2 rounded-full"
+                      class="w-2 h-2 rounded-full flex-shrink-0"
                       :class="
                         deviceStatus[name] ? 'bg-green-500' : 'bg-gray-400'
                       "

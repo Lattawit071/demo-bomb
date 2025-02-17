@@ -1,6 +1,6 @@
 <template>
   <div class="mb-20">
-    <Header />
+    <Header v-if="!isIoTDevicesPage" />
     <div class="mx-2">
       <div class="text-center mt-3">
         <p class="text-md font-bold">IOT Devices</p>
@@ -60,13 +60,16 @@
       </div>
     </div>
   </div>
+  <CustomerFooter v-if="isIoTDevicesPage" />
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from "vue";
+defineProps(["phoneId"]);
+import { ref, computed, onMounted, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import Header from "./Header.vue";
 import { phoneUsers, getUserDevicesByCategory } from "@/js/phonedb";
+import CustomerFooter from "./CustomerFooter.vue";
 
 // ใช้ route.params.phoneId เพื่อดึงข้อมูลจาก URL
 const route = useRoute();
@@ -89,6 +92,10 @@ const getDeviceIcon = (device) => {
     "กล้อง CCTV": "3.jpg",
     "Mesh WiFi": "1.jpg",
     "IR Remote Control": "5.jpg",
+    "Smart Motion Sensor": "6.jpg",
+    "Door Windows Sensor": "7.jpg",
+    "Smart Siren": "8.jpg",
+    "Smart SoS Button": "9.jpg",
   };
   return `/${iconMap[device] || "2.jpg"}`;
 };
@@ -97,6 +104,10 @@ const getDeviceIcon = (device) => {
 onMounted(() => {
   selectedUser.value =
     phoneUsers.find((user) => user.phone === selectedPhone.value) || null;
+});
+
+const isIoTDevicesPage = computed(() => {
+  return route.path === `/phone-detail/0912345678/iot-devices`;
 });
 </script>
 
