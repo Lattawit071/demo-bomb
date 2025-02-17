@@ -122,22 +122,34 @@
                   'Mesh WiFi': '/1.jpg',
                   'True ID Box': '/2.jpg',
                   'IR Remote ': '/5.jpg',
+                  'Smart Motion Sensor': '/6.jpg',
+                  'Door Windows Sensor': '/7.jpg',
+                  'Smart Siren': '/8.jpg',
+                  'Smart SoS Button': '/9.jpg',
                 }"
                 :key="name"
                 class="flex flex-col items-center p-2 min-w-[100px]"
               >
                 <img :src="img" class="w-12 h-12" />
                 <div class="flex items-center gap-2 mt-2">
-                  <p class="text-xs text-gray-600">{{ name }}</p>
+                  <p
+                    class="text-xs text-gray-600 truncate max-w-[80px] text-center"
+                  >
+                    {{ name }}
+                  </p>
                   <div
                     class="w-2 h-2 rounded-full"
                     :class="{
-                      'bg-green-500': index === 0 || index === 2,
+                      'bg-green-500':
+                        index === 0 ||
+                        index === 2 ||
+                        index === 4 ||
+                        index === 5,
                       'bg-gray-400': !(
                         index === 1 ||
                         index === 3 ||
-                        index === 4
-                      ), // ตัวอื่นเป็นสีเทา
+                        index === 6
+                      ),
                     }"
                   ></div>
                 </div>
@@ -158,7 +170,7 @@
             <p class="text-xs mt-2">ลงทะเบียนซิม</p>
           </div>
           <div class="text-center">
-            <img src="/roam.png" class="w-8 h-8 mx-auto ml-4" />
+            <img src="/roam.png" class="w-8 h-8 mx-auto" />
             <p class="text-xs mt-2">โรมมิ่ง&โทรไปต่างประเทศ</p>
           </div>
           <div class="text-center">
@@ -250,8 +262,7 @@ const resetState = () => {
   isLoggedIn.value = false;
 };
 
-// ฟังก์ชันดึงข้อมูลสถานะของอุปกรณ์
-const fetchDeviceStatus = (phoneId) => {
+const fetchDeviceStatus = () => {
   const user = phoneUsers.find((user) => user.phone === phoneId);
   deviceStatus.value = user?.devices || {};
 };
