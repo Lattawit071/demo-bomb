@@ -1,192 +1,105 @@
 <template>
   <div class="mb-70">
     <Header />
-    <div class="mx-2">
-      <div class="pic flex justify-center items-center mt-10">
-        <img src="/7.jpg" class="w-1/4" />
+    <div class="mx-auto max-w-4xl p-4">
+      <!-- รูปภาพด้านบน -->
+      <div class="flex justify-center items-center mt-10">
+        <img src="/7.jpg" alt="Product" class="rounded-lg shadow-lg w-3/5" />
       </div>
-      <div class="mt-4">
-        <p class="p-2">โปรชั่นทั่วไป</p>
-        <div class="flex gap-8 justify-between">
-          <!-- กล่องโปรโมชั่น ทรูออนไลน์ -->
-          <div
-            class="border-2 border-red-700 rounded-md p-2 text-sm max-w-xs mx-auto shadow-lg hover:shadow-xl transition-all duration-300"
-          >
-            <p class="text-center font-bold text-md mb-4">ลูกค้า ทรูออนไลน์</p>
-            <p class="text-center mb-3 text-gray-600">แพ็คแกจ</p>
 
-            <div class="flex justify-between mb-3">
-              <div class="flex">
-                <p class="text-red-700 font-bold text-xl mr-1">99.-</p>
-                <p class="text-sm pt-2">เดือน</p>
-              </div>
-              <button
-                class="w-6 h-6 flex justify-center items-center border-2 border-red-700 rounded-full ml-2"
-                :class="{ 'bg-red-700': isCheckedLeft }"
-                @click="toggleCheckLeft"
-              >
-                <span v-if="isCheckedLeft" class="text-white font-bold">✔</span>
-                <span v-else class="text-red-700">✔</span>
-              </button>
-            </div>
-          </div>
+      <!-- ชื่อสินค้า -->
+      <div class="mt-6 text-center">
+        <p class="text-lg font-semibold text-gray-800">
+          TrueLivingTECH Door Windows Sensor เซนเซอร์อัจฉริยะตรวจจับผู้บุกรุก
+        </p>
+      </div>
 
-          <!-- กล่องเครื่องเปล่า -->
-          <div
-            class="border-2 border-red-700 rounded-md p-6 text-sm max-w-xs mx-auto shadow-lg hover:shadow-xl transition-all duration-300"
-          >
-            <p class="text-center font-bold text-md mb-4 text-gray-800">
-              เครื่องเปล่า
-            </p>
-            <p class="text-center mb-3 text-gray-600">แพ็คแกจ</p>
+      <!-- หัวข้อโปรโมชัน -->
+      <p class="mt-6 text-lg font-bold text-gray-900">โปรชั่นทั่วไป</p>
 
-            <div class="flex justify-between mb-3">
-              <div class="flex">
-                <p class="text-red-700 font-bold text-xl mr-1">990.-</p>
-                <p class="text-sm pt-2">เดือน</p>
-              </div>
-              <button
-                class="w-6 h-6 flex ml-2 justify-center items-center border-2 border-red-700 rounded-full"
-                :class="{ 'bg-red-700': isCheckedRight }"
-                @click="toggleCheckRight"
-              >
-                <span v-if="isCheckedRight" class="text-white font-bold"
-                  >✔</span
-                >
-                <span v-else class="text-red-700">✔</span>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- แสดงเนื้อหาที่ถูกเลือกจากปุ่มด้านซ้าย -->
+      <!-- การ์ดสินค้า -->
+      <div class="flex gap-6 mt-6 justify-center">
         <div
-          v-if="isCheckedLeft"
-          class="border border-gray-200 p-1 rounded-md text-xs mt-2"
+          class="border-2 border-red-700 rounded-lg p-5 max-w-xs shadow-lg hover:shadow-xl transition-all duration-300"
         >
-          <div>
-            <!-- กล่อง checkbox 1 -->
-            <div class="flex box1">
-              <button
-                class="w-6 h-6 flex mr-1 justify-center items-center border-2 border-red-700 rounded-full ml-2"
-                :class="{ 'bg-red-700': isCheckedBox1 }"
-                @click="toggleCheckBox1"
-              >
-                <span v-if="isCheckedBox1" class="text-white font-bold">✔</span>
-                <span v-else class="text-red-700">✔</span>
-              </button>
-              <p>บริการ CCTV Cloud Service ดูย้อนหลัง 7 วัน</p>
-              <p class="font-bold text-red-500 ml-1">99.-</p>
-            </div>
-            <div
-              v-if="isCheckedBox1"
-              class="border-gray-400 border rounded-lg mx-3 bg-gray-200 text-gray-600 mt-1"
-            >
-              <div class="flex">
-                <div class="w-1 h-1 bg-black rounded-full mt-2 ml-2"></div>
-                <p class="ml-2">ฟรี ! กล้อง CCTV มูลค่า 990 บาท</p>
-              </div>
-
-              <div class="flex">
-                <div class="w-1 h-1 bg-black rounded-full mt-2 ml-2"></div>
-                <p class="ml-2">สัญญา 18 เดือน</p>
-              </div>
-              <div class="flex">
-                <div class="w-1 h-1 bg-black rounded-full mt-2 ml-2"></div>
-                <p class="ml-2">
-                  สำหรับลูกค้าปัจจุบันที่ใช้งานมากกว่าหรือเท่ากับ 90 วัน
-                </p>
-              </div>
-            </div>
-
-            <!-- กล่อง checkbox 2 -->
-            <div class="flex box2 mt-2">
-              <button
-                class="w-6 h-6 flex mr-1 justify-center items-center border-2 border-red-700 rounded-full ml-2"
-                :class="{ 'bg-red-700': isCheckedBox2 }"
-                @click="toggleCheckBox2"
-              >
-                <span v-if="isCheckedBox2" class="text-white font-bold">✔</span>
-                <span v-else class="text-red-700">✔</span>
-              </button>
-              <p>บริการ CCTV Cloud Service ดูย้อนหลัง 7 วัน</p>
-              <p class="font-bold text-red-500 ml-1">129.-</p>
-            </div>
-            <div
-              v-if="isCheckedBox2"
-              class="border-gray-400 border rounded-lg mx-3 bg-gray-200 text-gray-600 mt-1"
-            >
-              <div class="flex">
-                <div class="w-1 h-1 bg-black rounded-full mt-2 ml-2"></div>
-                <p class="ml-2">ฟรี ! กล้อง CCTV มูลค่า 990 บาท</p>
-              </div>
-
-              <div class="flex">
-                <div class="w-1 h-1 bg-black rounded-full mt-2 ml-2"></div>
-                <p class="ml-2">ฟรี ! ประกันภัยที่อยู่อาศัย นาน 24 เดือน</p>
-              </div>
-              <div class="flex">
-                <div class="w-1 h-1 bg-black rounded-full mt-2 ml-2"></div>
-                <p class="ml-2">สัญญา 24 เดือน</p>
-              </div>
-              <div class="flex">
-                <div class="w-1 h-1 bg-black rounded-full mt-2 ml-2"></div>
-                <p class="ml-2">
-                  1 หมายเลขทรูออนไลน์ ต่อ 1 สิทธิประกันภัยที่อยู่อาศัย
-                </p>
-              </div>
-              <div class="flex">
-                <div class="w-1 h-1 bg-black rounded-full mt-2 ml-2"></div>
-                <p class="ml-2">
-                  สำหรับลูกค้าปัจจุบันที่ใช้งานมากกว่าหรือเท่ากับ 90 วัน
-                </p>
-              </div>
-            </div>
-
-            <!-- กล่อง checkbox 3 -->
-            <div class="flex box3 mt-2">
-              <button
-                class="w-6 h-6 flex mr-1 justify-center items-center border-2 border-red-700 rounded-full ml-2"
-                :class="{ 'bg-red-700': isCheckedBox3 }"
-                @click="toggleCheckBox3"
-              >
-                <span v-if="isCheckedBox3" class="text-white font-bold">✔</span>
-                <span v-else class="text-red-700">✔</span>
-              </button>
-              <p>บริการ CCTV Cloud Service ดูย้อนหลัง 7 วัน</p>
-              <p class="font-bold text-red-500 ml-1">159.-</p>
-            </div>
-            <div
-              v-if="isCheckedBox3"
-              class="border-gray-400 border rounded-lg mx-3 bg-gray-200 text-gray-600 mt-1"
-            >
-              <div class="flex">
-                <div class="w-1 h-1 bg-black rounded-full mt-2 ml-2"></div>
-                <p class="ml-2">ฟรี ! กล้อง CCTV มูลค่า 990 บาท</p>
-              </div>
-
-              <div class="flex">
-                <div class="w-1 h-1 bg-black rounded-full mt-2 ml-2"></div>
-                <p class="ml-2">สัญญา 18 เดือน</p>
-              </div>
-              <div class="flex">
-                <div class="w-1 h-1 bg-black rounded-full mt-2 ml-2"></div>
-                <p class="ml-2">
-                  สำหรับลูกค้าปัจจุบันที่ใช้งานมากกว่าหรือเท่ากับ 90 วัน
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          v-if="isCheckedRight || (isCheckedLeft && isAnyChecked)"
-          class="flex justify-center mt-4"
-        >
-          <p
-            class="font-bold text-white bg-gradient-to-r from-pink-500 to-pink-700 rounded-lg px-4 py-2 cursor-pointer hover:bg-gradient-to-r hover:from-pink-600 hover:to-pink-800 transition-all duration-300"
-          >
-            ซื้อเลย
+          <p class="text-center text-lg font-bold mb-3 text-gray-800">
+            เครื่องเปล่า
           </p>
+          <p class="text-gray-600 text-center">แพ็คแกจ</p>
+          <div class="flex justify-between items-center mt-4">
+            <p class="text-red-700 font-bold text-xl">490.-</p>
+            <button
+              class="w-8 h-8 flex justify-center items-center border-2 border-red-700 rounded-full"
+              :class="{ 'bg-red-700': isCheckedRight }"
+              @click="toggleCheckRight"
+            >
+              <span v-if="isCheckedRight" class="text-white font-bold text-lg"
+                >✔</span
+              >
+              <span v-else class="text-red-700 font-bold text-lg">✔</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- แท็บแสดงเนื้อหา -->
+      <div
+        v-if="isCheckedRight"
+        class="mt-8 border border-gray-300 rounded-lg shadow-md"
+      >
+        <div class="flex">
+          <button
+            @click="activeTab = 'details'"
+            :class="
+              activeTab === 'details'
+                ? 'bg-white text-red-700'
+                : 'bg-gray-200 text-gray-700'
+            "
+            class="flex-1 px-6 py-3 text-center font-bold transition-all duration-300 border-b-2 border-gray-300"
+          >
+            รายละเอียดสินค้า
+          </button>
+          <button
+            @click="activeTab = 'script'"
+            :class="
+              activeTab === 'script'
+                ? 'bg-white text-red-700'
+                : 'bg-gray-200 text-gray-700'
+            "
+            class="flex-1 px-6 py-3 text-center font-bold transition-all duration-300 border-b-2 border-gray-300"
+          >
+            สคริป
+          </button>
+        </div>
+
+        <!-- เนื้อหาแท็บ -->
+        <div class="p-6 bg-white">
+          <div v-if="activeTab === 'details'">
+            <p class="text-gray-700 leading-relaxed">
+              คุณสมบัติ • Door Windows Sensor เซนเซอร์อัจฉริยะตรวจจับผู้บุกรุก •
+              เชื่อมต่อผ่านสัญญาณไร้สาย Zigbee เท่านั้น •
+              อุปกรณ์ต้องใช้งานร่วมกับ Zigbee Mini Hub (Gateway)
+              เพื่อเป็นตัวกลางในการเชื่อมต่อ ...
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+              <img
+                src="/detail1.jpg"
+                alt="Detail 1"
+                class="rounded-lg shadow-md"
+              />
+              <img
+                src="/detail2.jpg"
+                alt="Detail 2"
+                class="rounded-lg shadow-md"
+              />
+            </div>
+          </div>
+          <div v-else-if="activeTab === 'script'">
+            <p class="text-gray-700 leading-relaxed">
+              หน้าที่การทำงานและสคริป ตรวจจับการเปิด/ปิด ประตูหรือหน้าต่าง
+              หลังจากตรวจจับได้แล้ว อุปกรณ์จะทำแจ้งเตือนไปยังสมาร์ทโฟนของคุณ ...
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -210,15 +123,10 @@ const toggleCheckLeft = () => {
 };
 
 // สถานะของกล่องด้านขวา
-const isCheckedRight = ref(false);
+const isCheckedRight = ref(true);
+const activeTab = ref("details");
 const toggleCheckRight = () => {
   isCheckedRight.value = !isCheckedRight.value;
-  if (isCheckedRight.value) {
-    isCheckedLeft.value = false; // ปิดปุ่มซ้ายเมื่อกดปุ่มขวา
-    isCheckedBox1.value = false; // ปิด checkbox อื่น ๆ เมื่อกดปุ่มขวา
-    isCheckedBox2.value = false;
-    isCheckedBox3.value = false;
-  }
 };
 
 // สถานะของปุ่มติ๊กถูกภายในกล่อง
