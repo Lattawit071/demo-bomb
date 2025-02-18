@@ -11,7 +11,7 @@
         <img src="/8.jpg" alt="Product" class="w-3/5" />
       </div>
 
-      <p class="mt-6 text-lg sm:text-xl font-bold">โปรชั่นทั่วไป</p>
+      <p class="mt-6 text-lg sm:text-xl font-bold">โปรโมชั่นทั่วไป</p>
 
       <div class="flex gap-4 mt-6 justify-center">
         <div
