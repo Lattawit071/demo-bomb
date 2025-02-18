@@ -1,14 +1,14 @@
 <template>
   <div class="mb-16">
     <Header />
-    <div class="mx-auto max-w-4xl p-6">
+    <div class="max-w-4xl p-6">
       <div class="mt-6 text-center">
         <p class="text-lg sm:text-xl font-bold text-gray-800 leading-snug">
-          Mesh WiFi
+          router WiFi
         </p>
       </div>
       <div class="flex justify-center items-center mt-5">
-        <img src="/pic1.png" alt="Product" class="w-2/5" />
+        <img src="/12.png" alt="Product" class="w-1/5" />
       </div>
 
       <!-- ชื่อสินค้า -->
@@ -55,11 +55,7 @@
         </div>
       </div>
 
-      <!-- แท็บแสดงเนื้อหา -->
-      <div
-        v-if="isCheckedRight"
-        class="mt-8 border border-gray-300 rounded-lg shadow-md bg-white"
-      >
+      <div class="mt-8 border border-gray-300 rounded-lg shadow-md bg-white">
         <div class="flex">
           <button
             @click="activeTab = 'details'"
@@ -85,76 +81,13 @@
           </button>
         </div>
 
-        <div class="p-4 bg-white flex justify-between items-center">
-          <div class="flex">
-            <div v-if="activeTab === 'details'">
-              <div class="space-y-4">
-                <div v-for="(promotion, index) in promotions" :key="index">
-                  <div
-                    class="flex items-center space-x-5 border-b border-gray-200 py-4"
-                  >
-                    <button
-                      class="w-10 h-10 flex justify-center items-center border-2 border-red-700 rounded-full"
-                      :class="{
-                        'bg-red-700 text-white': activeOptionRight === index,
-                        'bg-white text-red-700': activeOptionRight !== index,
-                      }"
-                      @click="setActiveRight(index)"
-                    >
-                      ✔
-                    </button>
-                    <div
-                      class="text-sm sm:text-base font-semibold text-gray-800"
-                    >
-                      {{ promotion.name }}
-                    </div>
-                    <div class="text-red-500 font-semibold text-xs">
-                      {{ promotion.price }}
-                    </div>
-                    <div class="text-gray-700 font-medium text-xs">
-                      {{ promotion.speed }}
-                    </div>
-                    <div class="text-red-500 font-medium text-xs">
-                      {{ promotion.speed2 }}
-                    </div>
-                  </div>
+        <div class="bg-white flex justify-between items-center"></div>
 
-                  <!-- แสดงข้อมูลของโปรโมชั่นที่เลือก -->
-                  <div v-if="activeOptionRight === index" class="mt-2">
-                    <div class="flex mt-4 overflow-x-auto">
-                      <div
-                        v-for="(img, imgIndex) in promotion.images"
-                        :key="imgIndex"
-                        class="flex flex-col items-center justify-center shrink-0"
-                      >
-                        <img
-                          :src="img.src"
-                          :alt="img.text"
-                          :width="img.w"
-                          :height="img.h"
-                          class=""
-                        />
-                        <p
-                          class="text-xs font-semibold mt-2 break-words max-w-16 text-center"
-                        >
-                          {{ img.text }}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div v-else-if="activeTab === 'script'">
-              <p class="text-gray-700 text-center">
-                หน้าที่การทำงานและสคริป ตรวจจับการเปิด/ปิด ประตูหรือหน้าต่าง
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="p-4 rounded-lg shadow-md space-y-4">
-          <div class="text-lg font-bold text-gray-800">รายละเอียดสินค้า</div>
+        <!-- Details section -->
+        <div
+          class="p-4 rounded-lg shadow-md space-y-4"
+          v-if="activeTab === 'details'"
+        >
           <div class="text-sm text-gray-700 leading-relaxed space-y-4">
             <p>
               ทรูออนไลน์ได้เปิดตัว
@@ -195,8 +128,85 @@
             </p>
           </div>
         </div>
+
+        <!-- Script section -->
+        <div
+          v-if="activeTab === 'script'"
+          class="p-4 rounded-lg shadow-md space-y-4"
+        >
+          <p class="text-gray-700 text-center">
+            นี่คือ สคริปเว้ยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยย
+          </p>
+          <p class="text-gray-700 text-center">
+            นี่คือ สคริปเว้ยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยย
+          </p>
+          <p class="text-gray-700 text-center">
+            นี่คือ สคริปเว้ยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยย
+          </p>
+        </div>
       </div>
 
+      <div
+        v-if="isCheckedRight"
+        class="flex border-2 mt-5 ml-2 border-gray-200 p-2"
+      >
+        <div>
+          <div class="space-y-4">
+            <div v-for="(promotion, index) in promotions" :key="index">
+              <div
+                class="flex items-center space-x-5 border-b border-gray-200 py-4"
+              >
+                <button
+                  class="w-10 h-10 flex justify-center items-center border-2 border-red-700 rounded-full"
+                  :class="{
+                    'bg-red-700 text-white': activeOptionRight === index,
+                    'bg-white text-red-700': activeOptionRight !== index,
+                  }"
+                  @click="setActiveRight(index)"
+                >
+                  ✔
+                </button>
+                <div class="sm:text-base font-semibold text-gray-800">
+                  {{ promotion.name }}
+                </div>
+                <div class="text-red-500 font-semibold">
+                  {{ promotion.price }}
+                </div>
+                <div class="text-gray-700 font-medium">
+                  {{ promotion.speed }}
+                </div>
+                <div class="text-red-500 font-medium">
+                  {{ promotion.speed2 }}
+                </div>
+              </div>
+
+              <!-- แสดงข้อมูลของโปรโมชั่นที่เลือก -->
+              <div v-if="activeOptionRight === index" class="mt-2">
+                <div class="flex mt-4 overflow-x-auto">
+                  <div
+                    v-for="(img, imgIndex) in promotion.images"
+                    :key="imgIndex"
+                    class="flex flex-col items-center justify-center shrink-0"
+                  >
+                    <img
+                      :src="img.src"
+                      :alt="img.text"
+                      :width="img.w"
+                      :height="img.h"
+                      class=""
+                    />
+                    <p
+                      class="text-xs font-semibold mt-2 break-words max-w-16 text-center"
+                    >
+                      {{ img.text }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <!-- ปุ่มซื้อเลยและข้อความ -->
       <div
         v-if="isCheckedLeft || (isCheckedRight && activeOptionRight !== null)"
