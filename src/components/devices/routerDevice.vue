@@ -8,7 +8,7 @@
         </p>
       </div>
       <div class="flex justify-center items-center mt-5">
-        <img src="/12.png" alt="Product" class="w-1/5" />
+        <img src="/pic1.png" alt="Product" class="w-3/5" />
       </div>
 
       <!-- ชื่อสินค้า -->
