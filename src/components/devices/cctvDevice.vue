@@ -6,7 +6,7 @@
         <img src="/3.jpg" class="w-1/4" />
       </div>
       <div class="mt-4">
-        <p class="p-2">โปรชั่นทั่วไป</p>
+        <p class="p-2">โปรโมรชั่นทั่วไป</p>
         <div class="flex gap-8 justify-between">
           <!-- กล่องโปรโมชั่น ทรูออนไลน์ -->
           <div

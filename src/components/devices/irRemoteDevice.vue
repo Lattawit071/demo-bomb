@@ -17,7 +17,7 @@
       <!-- ชื่อสินค้า -->
 
       <!-- หัวข้อโปรโมชัน -->
-      <p class="mt-6 text-lg sm:text-xl font-bold">โปรชั่นทั่วไป</p>
+      <p class="mt-6 text-lg sm:text-xl font-bold">โปรโมรชั่นทั่วไป</p>
 
       <!-- การ์ดสินค้า -->
       <div class="flex gap-4 mt-6 justify-center">
@@ -198,7 +198,7 @@ import { ref } from "vue";
 
 const promotions = [
   {
-    name: "โปรชั่น",
+    name: "โปรโมรชั่น",
     price: "900",
     speed: "100/500 Mbps",
     images: [

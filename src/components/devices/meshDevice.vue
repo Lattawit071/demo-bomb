@@ -3,18 +3,18 @@
     <Header />
     <div class="mx-auto max-w-4xl p-6">
       <div class="mt-6 text-center">
-        <p class="text-lg sm:text-xl font-semibold text-gray-800 leading-snug">
-          TrueLivingTECH Door Windows Sensor เซนเซอร์อัจฉริยะตรวจจับผู้บุกรุก
+        <p class="text-lg sm:text-xl font-bold text-gray-800 leading-snug">
+          Mesh WiFi
         </p>
       </div>
       <div class="flex justify-center items-center mt-5">
-        <img src="/7.jpg" alt="Product" class="w-2/5" />
+        <img src="/1.jpg" alt="Product" class="w-1/5" />
       </div>
 
       <!-- ชื่อสินค้า -->
 
       <!-- หัวข้อโปรโมชัน -->
-      <p class="mt-6 text-lg sm:text-xl font-bold">โปรชั่นทั่วไป</p>
+      <p class="mt-6 text-lg sm:text-xl font-bold">โปรโมรชั่นทั่วไป</p>
 
       <!-- การ์ดสินค้า -->
       <div class="flex gap-4 mt-6 justify-center">
@@ -31,7 +31,7 @@
           <div class="mt-3 text-center text-base sm:text-lg text-gray-700">
             <p class="">ราคา</p>
             <div class="flex justify-center items-center mt-2">
-              <p class="text-xl font-semibold text-red-500">900.-</p>
+              <p class="text-xl font-semibold text-red-500">599.-</p>
               <p class="ml-2 text-sm sm:text-base">เดือน</p>
               <div class="ml-4">
                 <button
@@ -44,42 +44,6 @@
                 >
                   <span
                     v-if="isCheckedRight"
-                    class="text-white font-bold text-xl"
-                    >✔</span
-                  >
-                  <span v-else class="text-red-700 font-bold text-xl">✔</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- กล่องใหม่ -->
-        <div
-          class="border-2 border-red-700 rounded-lg p-4 shadow-lg hover:shadow-xl transition-all duration-300 bg-white w-full sm:w-1/2 lg:w-1/3"
-        >
-          <div class="text-center">
-            <p class="font-bold text-base sm:text-lg text-gray-700">
-              เครื่องเปล่า
-            </p>
-          </div>
-          <!-- ข้อความโปรโมชั่น -->
-          <div class="mt-3 text-center text-base sm:text-lg text-gray-700">
-            <p class="">ราคา</p>
-            <div class="flex justify-center items-center mt-2">
-              <p class="text-xl font-semibold text-red-500">249.-</p>
-              <p class="ml-2 text-sm sm:text-base">บาท</p>
-              <div class="ml-4">
-                <button
-                  class="w-10 h-10 flex justify-center items-center border-2 border-red-700 rounded-full transition-all duration-300 transform hover:scale-110"
-                  :class="{
-                    'bg-red-700': isCheckedLeft,
-                    'bg-white': !isCheckedLeft,
-                  }"
-                  @click="toggleCheckLeft"
-                >
-                  <span
-                    v-if="isCheckedLeft"
                     class="text-white font-bold text-xl"
                     >✔</span
                   >
@@ -144,11 +108,14 @@
                     >
                       {{ promotion.name }}
                     </div>
-                    <div class="text-red-500 font-semibold">
+                    <div class="text-red-500 font-semibold text-xs">
                       {{ promotion.price }}
                     </div>
-                    <div class="text-gray-700 font-medium">
+                    <div class="text-gray-700 font-medium text-xs">
                       {{ promotion.speed }}
+                    </div>
+                    <div class="text-red-500 font-medium text-xs">
+                      {{ promotion.speed2 }}
                     </div>
                   </div>
 
@@ -206,12 +173,13 @@
           class="text-center text-sm sm:text-base text-center text-gray-700 mt-4 border border-gray-300 p-4 rounded-lg bg-gray-50"
         >
           <p>
-            ㆍตรวจจับการ เปิด/ปิด ประตูหรือหน้าต่าง หลังจากตรวจจับได้แล้ว
-            อุปกรณ์
-            จะทำแจ้งเตือนไปผ่านไปยังสมาร์ทโฟนของคุณโดยทันทีผ่านแอปพลิเคชัน TrueX
-            ช่วยแจ้งเตือนคุณหากผู้บุกรุกเปิดประตูหรือหน้าต่างภายในบ้านของ คุณ
-            นอกจากนี้หากคุณเพิ่งออกจากบ้านและเผลอลืมไปว่าคุณปิดประ ตูและ
-            หน้าต่างแล้วหรือยัง คุณสามารถตรวจสอบจากแอปพลิเคชันได้โดยตรง
+            อุปกรณ์เสริมกระจายสัญญาณ WiFi ครอบคลุมทุกตารางเมตร
+            ให้คุณเล่นเน็ตได้ทุกมุม แรงทุกจุด หมดปัญหาจุดอับสัญญาณภายในบ้าน
+            ติดตั้งง่าย ไม่ต้องเดินสาย LAN Mesh WiFi ทำงานเชื่อมโยงแบบใยแมงมุม
+            เสมือนเครือข่ายเน็ตเวิร์คขนาดใหญ่
+            ที่ค้นหาอุปกรณ์ในเน็ตเวิร์คเดียวกันแบบอัตโนมัติ
+            เพื่อการเชื่อมต่อที่สมบูรณ์แบบ
+            ให้คุณใช้เน็ตบ้านได้อย่างเต็มประสิทธิภาพยิ่งกว่าเดิม
           </p>
         </div>
       </div>
@@ -225,12 +193,11 @@ import { ref } from "vue";
 
 const promotions = [
   {
-    name: "โปรชั่น",
-    price: "900",
-    speed: "100/500 Mbps",
+    name: "โปรโมรชั่น",
+    price: "599",
+    speed: "500/500 Mbps",
+    speed2: "UP 700/700Mbps เดือน",
     images: [
-      { src: "/pic1.png", text: "1เครื่อง", w: 70, h: 70 },
-      { src: "/blank.png", text: "", w: 70, h: 50 },
       { src: "/2.jpg", text: "กล่องทรูไอดี ทีวี ", w: 70, h: 50 },
       { src: "/blank.png", text: "+", w: 30, h: 40 },
       { src: "/pic2.png", text: "10 GB", w: 70, h: 50 },
@@ -241,54 +208,31 @@ const promotions = [
         w: 40,
         h: 40,
       },
-      { src: "/blank.png", text: "", w: 70, h: 50 },
-      { src: "/10.png", text: "", w: 50, h: 50 },
-      { src: "/8.jpg", text: "", w: 70, h: 50 },
-      { src: "/9.jpg", text: "", w: 70, h: 50 },
-      { src: "/blank.png", text: "", w: 70, h: 50 },
-      { src: "/pic3.png", text: "", w: 70, h: 50 },
-      { src: "/blank.png", text: "", w: 30, h: 50 },
-      { src: "/pic4.png", text: "", w: 50, h: 50 },
-    ],
-  },
-  {
-    name: "โปรโมชั่น",
-    price: "900",
-    speed: "1000/500 Mbps",
-
-    images: [
-      { src: "/pic1.png", text: "2เครื่อง", w: 70, h: 70 },
-      { src: "/blank.png", text: "", w: 70, h: 50 },
-
-      { src: "/pic2.png", text: "10 GB", w: 70, h: 50 },
-      { src: "/blank.png", text: "+", w: 30, h: 40 },
       {
-        src: "/3.jpg",
-        text: "กล้อง cctv 1ตัว cloud ดูย้อนหลัง 7วัน",
+        src: "/1.jpg",
+        text: "Mesh WiFi",
         w: 40,
         h: 40,
       },
       { src: "/blank.png", text: "", w: 70, h: 50 },
-      { src: "/10.png", text: "", w: 50, h: 50 },
-      { src: "/8.jpg", text: "", w: 70, h: 50 },
-      { src: "/9.jpg", text: "", w: 70, h: 50 },
-      { src: "/blank.png", text: "", w: 70, h: 50 },
-      { src: "/pic3.png", text: "", w: 70, h: 50 },
-      { src: "/blank.png", text: "", w: 30, h: 50 },
-      { src: "/pic4.png", text: "", w: 50, h: 50 },
+      { src: "/11.png", text: "นาน24ชั่วโมง", w: 50, h: 50 },
+      { src: "/blank.png", text: "", w: 10, h: 10 },
+      { src: "/12.png", text: "นาน24ชั่วโมง", w: 70, h: 50 },
+      { src: "/blank.png", text: "", w: 10, h: 10 },
+      { src: "/13.png", text: "ประกันที่อยู่อาศัย24เดือน", w: 70, h: 50 },
+      { src: "/blank.png", text: "", w: 10, h: 10 },
+      { src: "/14.png", text: "ประกันชีวิต24เดือน", w: 70, h: 50 },
     ],
   },
   {
     name: "โปรโมชั่น",
-    price: "1000",
-    speed: "1000/500 Mbps",
-
+    price: "699",
+    speed: "500/500 Mbps",
+    speed2: "UP 700/700Mbps เดือน",
     images: [
-      { src: "/pic1.png", text: "2เครื่อง", w: 70, h: 70 },
-      { src: "/blank.png", text: "", w: 70, h: 50 },
       { src: "/2.jpg", text: "กล่องทรูไอดี ทีวี ", w: 70, h: 50 },
       { src: "/blank.png", text: "+", w: 30, h: 40 },
-      { src: "/pic2.png", text: "10 GB", w: 70, h: 50 },
+      { src: "/pic2.png", text: "20 GB", w: 70, h: 50 },
       { src: "/blank.png", text: "+", w: 30, h: 40 },
       {
         src: "/3.jpg",
@@ -296,14 +240,48 @@ const promotions = [
         w: 40,
         h: 40,
       },
+      {
+        src: "/1.jpg",
+        text: "Mesh WiFi",
+        w: 40,
+        h: 40,
+      },
       { src: "/blank.png", text: "", w: 70, h: 50 },
-      { src: "/10.png", text: "", w: 50, h: 50 },
-      { src: "/8.jpg", text: "", w: 70, h: 50 },
-      { src: "/9.jpg", text: "", w: 70, h: 50 },
+      { src: "/11.png", text: "นาน24ชั่วโมง", w: 50, h: 50 },
+      { src: "/blank.png", text: "", w: 10, h: 10 },
+      { src: "/12.png", text: "นาน24ชั่วโมง", w: 70, h: 50 },
+      { src: "/blank.png", text: "", w: 10, h: 10 },
+      { src: "/15.png", text: "ประกันที่อยู่อาศัย24เดือน", w: 70, h: 50 },
+    ],
+  },
+  {
+    name: "โปรโมชั่น",
+    price: "799",
+    speed: "1000/500 Mbps",
+    speed2: "UP 1000/1000Mbps เดือน",
+    images: [
+      { src: "/2.jpg", text: "กล่องทรูไอดี ทีวี ", w: 70, h: 50 },
+      { src: "/blank.png", text: "+", w: 30, h: 40 },
+      { src: "/pic2.png", text: "20 GB", w: 70, h: 50 },
+      { src: "/blank.png", text: "+", w: 30, h: 40 },
+      {
+        src: "/3.jpg",
+        text: "กล้อง cctv 1ตัว cloud ดูย้อนหลัง 7วัน",
+        w: 40,
+        h: 40,
+      },
+      {
+        src: "/1.jpg",
+        text: "Mesh WiFi",
+        w: 40,
+        h: 40,
+      },
       { src: "/blank.png", text: "", w: 70, h: 50 },
-      { src: "/pic3.png", text: "", w: 70, h: 50 },
-      { src: "/blank.png", text: "", w: 30, h: 50 },
-      { src: "/pic4.png", text: "", w: 50, h: 50 },
+      { src: "/11.png", text: "นาน24ชั่วโมง", w: 50, h: 50 },
+      { src: "/blank.png", text: "", w: 10, h: 10 },
+      { src: "/12.png", text: "นาน24ชั่วโมง", w: 70, h: 50 },
+      { src: "/blank.png", text: "", w: 10, h: 10 },
+      { src: "/15.png", text: "ประกันที่อยู่อาศัย24เดือน", w: 70, h: 50 },
     ],
   },
 ];

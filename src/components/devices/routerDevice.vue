@@ -1,304 +1,357 @@
 <template>
-  <div v-if="noDetails" class="mb-70">
+  <div class="mb-16">
     <Header />
-    <div class="mx-2">
-      <div class="pic flex justify-center items-center mt-10">
-        <img src="/4.jpg" class="w-1/4" />
+    <div class="mx-auto max-w-4xl p-6">
+      <div class="mt-6 text-center">
+        <p class="text-lg sm:text-xl font-bold text-gray-800 leading-snug">
+          Mesh WiFi
+        </p>
       </div>
-      <div class="mt-4">
-        <p class="p-2">โปรชั่นทั่วไป</p>
-        <div class="flex gap-8 justify-between">
-          <!-- กล่องโปรโมชั่น ทรูออนไลน์ -->
-          <div
-            class="border-2 border-red-700 rounded-md p-2 text-sm max-w-xs mx-auto shadow-lg hover:shadow-xl transition-all duration-300"
-          >
-            <p class="text-center font-bold text-md mb-4">ลูกค้า ทรูออนไลน์</p>
-            <p class="text-center mb-3 text-gray-600">แพ็คแกจ</p>
+      <div class="flex justify-center items-center mt-5">
+        <img src="/pic1.png" alt="Product" class="w-2/5" />
+      </div>
 
-            <div class="flex justify-between mb-3">
-              <div class="flex">
-                <p class="text-red-700 font-bold text-xl mr-1">99.-</p>
-                <p class="text-sm pt-2">เดือน</p>
-              </div>
-              <button
-                class="w-6 h-6 flex justify-center items-center border-2 border-red-700 rounded-full ml-2"
-                :class="{ 'bg-red-700': isCheckedLeft }"
-                @click="toggleCheckLeft"
-              >
-                <span v-if="isCheckedLeft" class="text-white font-bold">✔</span>
-                <span v-else class="text-red-700">✔</span>
-              </button>
-            </div>
-          </div>
+      <!-- ชื่อสินค้า -->
 
-          <!-- กล่องเครื่องเปล่า -->
-          <div
-            class="border-2 border-red-700 rounded-md p-6 text-sm max-w-xs mx-auto shadow-lg hover:shadow-xl transition-all duration-300"
-          >
-            <p class="text-center font-bold text-md mb-4 text-gray-800">
-              เครื่องเปล่า
+      <!-- หัวข้อโปรโมชัน -->
+      <p class="mt-6 text-lg sm:text-xl font-bold">โปรชั่นทั่วไป</p>
+
+      <!-- การ์ดสินค้า -->
+      <div class="flex gap-4 mt-6 justify-center">
+        <!-- กล่องแรก -->
+        <div
+          class="border-2 border-red-700 rounded-lg p-4 shadow-lg hover:shadow-xl transition-all duration-300 bg-white w-full sm:w-1/2 lg:w-1/3"
+        >
+          <div class="text-center">
+            <p class="font-bold text-base sm:text-lg text-gray-700">
+              ลูกค้าทรูออนไลน์
             </p>
-            <p class="text-center mb-3 text-gray-600">แพ็คแกจ</p>
-
-            <div class="flex justify-between mb-3">
-              <div class="flex">
-                <p class="text-red-700 font-bold text-xl mr-1">990.-</p>
-                <p class="text-sm pt-2">เดือน</p>
-              </div>
-              <button
-                class="w-6 h-6 flex ml-2 justify-center items-center border-2 border-red-700 rounded-full"
-                :class="{ 'bg-red-700': isCheckedRight }"
-                @click="toggleCheckRight"
-              >
-                <span v-if="isCheckedRight" class="text-white font-bold"
-                  >✔</span
+          </div>
+          <!-- ข้อความโปรโมชั่น -->
+          <div class="mt-3 text-center text-base sm:text-lg text-gray-700">
+            <p class="">ราคา</p>
+            <div class="flex justify-center items-center mt-2">
+              <p class="text-xl font-semibold text-red-500">599.-</p>
+              <p class="ml-2 text-sm sm:text-base">เดือน</p>
+              <div class="ml-4">
+                <button
+                  class="w-10 h-10 flex justify-center items-center border-2 border-red-700 rounded-full transition-all duration-300 transform hover:scale-110"
+                  :class="{
+                    'bg-red-700': isCheckedRight,
+                    'bg-white': !isCheckedRight,
+                  }"
+                  @click="toggleCheckRight"
                 >
-                <span v-else class="text-red-700">✔</span>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- แสดงเนื้อหาที่ถูกเลือกจากปุ่มด้านซ้าย -->
-        <div
-          v-if="isCheckedLeft"
-          class="border border-gray-200 p-1 rounded-md text-xs mt-2"
-        >
-          <div>
-            <!-- กล่อง checkbox 1 -->
-            <div class="flex box1">
-              <button
-                class="w-6 h-6 flex mr-1 justify-center items-center border-2 border-red-700 rounded-full ml-2"
-                :class="{ 'bg-red-700': isCheckedBox1 }"
-                @click="toggleCheckBox1"
-              >
-                <span v-if="isCheckedBox1" class="text-white font-bold">✔</span>
-                <span v-else class="text-red-700">✔</span>
-              </button>
-              <p>บริการ CCTV Cloud Service ดูย้อนหลัง 7 วัน</p>
-              <p class="font-bold text-red-500 ml-1">99.-</p>
-            </div>
-            <div
-              v-if="isCheckedBox1"
-              class="border-gray-400 border rounded-lg mx-3 bg-gray-200 text-gray-600 mt-1"
-            >
-              <div class="flex">
-                <div class="w-1 h-1 bg-black rounded-full mt-2 ml-2"></div>
-                <p class="ml-2">ฟรี ! กล้อง CCTV มูลค่า 990 บาท</p>
-              </div>
-
-              <div class="flex">
-                <div class="w-1 h-1 bg-black rounded-full mt-2 ml-2"></div>
-                <p class="ml-2">สัญญา 18 เดือน</p>
-              </div>
-              <div class="flex">
-                <div class="w-1 h-1 bg-black rounded-full mt-2 ml-2"></div>
-                <p class="ml-2">
-                  สำหรับลูกค้าปัจจุบันที่ใช้งานมากกว่าหรือเท่ากับ 90 วัน
-                </p>
-              </div>
-            </div>
-
-            <!-- กล่อง checkbox 2 -->
-            <div class="flex box2 mt-2">
-              <button
-                class="w-6 h-6 flex mr-1 justify-center items-center border-2 border-red-700 rounded-full ml-2"
-                :class="{ 'bg-red-700': isCheckedBox2 }"
-                @click="toggleCheckBox2"
-              >
-                <span v-if="isCheckedBox2" class="text-white font-bold">✔</span>
-                <span v-else class="text-red-700">✔</span>
-              </button>
-              <p>บริการ CCTV Cloud Service ดูย้อนหลัง 7 วัน</p>
-              <p class="font-bold text-red-500 ml-1">129.-</p>
-            </div>
-            <div
-              v-if="isCheckedBox2"
-              class="border-gray-400 border rounded-lg mx-3 bg-gray-200 text-gray-600 mt-1"
-            >
-              <div class="flex">
-                <div class="w-1 h-1 bg-black rounded-full mt-2 ml-2"></div>
-                <p class="ml-2">ฟรี ! กล้อง CCTV มูลค่า 990 บาท</p>
-              </div>
-
-              <div class="flex">
-                <div class="w-1 h-1 bg-black rounded-full mt-2 ml-2"></div>
-                <p class="ml-2">ฟรี ! ประกันภัยที่อยู่อาศัย นาน 24 เดือน</p>
-              </div>
-              <div class="flex">
-                <div class="w-1 h-1 bg-black rounded-full mt-2 ml-2"></div>
-                <p class="ml-2">สัญญา 24 เดือน</p>
-              </div>
-              <div class="flex">
-                <div class="w-1 h-1 bg-black rounded-full mt-2 ml-2"></div>
-                <p class="ml-2">
-                  1 หมายเลขทรูออนไลน์ ต่อ 1 สิทธิประกันภัยที่อยู่อาศัย
-                </p>
-              </div>
-              <div class="flex">
-                <div class="w-1 h-1 bg-black rounded-full mt-2 ml-2"></div>
-                <p class="ml-2">
-                  สำหรับลูกค้าปัจจุบันที่ใช้งานมากกว่าหรือเท่ากับ 90 วัน
-                </p>
-              </div>
-            </div>
-
-            <!-- กล่อง checkbox 3 -->
-            <div class="flex box3 mt-2">
-              <button
-                class="w-6 h-6 flex mr-1 justify-center items-center border-2 border-red-700 rounded-full ml-2"
-                :class="{ 'bg-red-700': isCheckedBox3 }"
-                @click="toggleCheckBox3"
-              >
-                <span v-if="isCheckedBox3" class="text-white font-bold">✔</span>
-                <span v-else class="text-red-700">✔</span>
-              </button>
-              <p>บริการ CCTV Cloud Service ดูย้อนหลัง 7 วัน</p>
-              <p class="font-bold text-red-500 ml-1">159.-</p>
-            </div>
-            <div
-              v-if="isCheckedBox3"
-              class="border-gray-400 border rounded-lg mx-3 bg-gray-200 text-gray-600 mt-1"
-            >
-              <div class="flex">
-                <div class="w-1 h-1 bg-black rounded-full mt-2 ml-2"></div>
-                <p class="ml-2">ฟรี ! กล้อง CCTV มูลค่า 990 บาท</p>
-              </div>
-
-              <div class="flex">
-                <div class="w-1 h-1 bg-black rounded-full mt-2 ml-2"></div>
-                <p class="ml-2">สัญญา 18 เดือน</p>
-              </div>
-              <div class="flex">
-                <div class="w-1 h-1 bg-black rounded-full mt-2 ml-2"></div>
-                <p class="ml-2">
-                  สำหรับลูกค้าปัจจุบันที่ใช้งานมากกว่าหรือเท่ากับ 90 วัน
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          v-if="isCheckedRight || (isCheckedLeft && isAnyChecked)"
-          class="mt-4"
-        >
-          <div class="flex flex-col items-center">
-            <button
-              type="button"
-              class="font-bold text-white bg-gradient-to-r from-pink-500 to-pink-700 rounded-lg px-6 py-3 cursor-pointer hover:bg-gradient-to-r hover:from-pink-600 hover:to-pink-800 transition-all duration-300 shadow-md"
-            >
-              ซื้อเลย
-            </button>
-            <div
-              class="mt-4 w-full max-w-lg border border-gray-300 rounded-lg p-4 bg-white shadow-sm"
-            >
-              <p class="text-lg font-bold text-gray-800 mb-2">
-                รายละเอียดสินค้า
-              </p>
-              <p class="text-md font-semibold text-gray-700 mb-1">
-                กล้องวงจรปิดอัจฉริยะ
-              </p>
-              <div class="text-sm space-y-1">
-                <p>TrueLivingTECH Smart CCTV Camera 1080P</p>
-                <p>ความละเอียด Full HD 1920 x 1080P H.264 High Profile</p>
-                <p>รองรับ Night Vision Mode ระยะทำงาน 8 เมตร</p>
-                <p>หมุนได้ 355° แนวนอน และ 110° แนวตั้ง</p>
-                <p>ลำโพงในตัว รองรับ Two-Way Audio (Built-in MIC & Speaker)</p>
-                <p>รองรับการเชื่อมต่อไร้สายผ่าน Wi-Fi 2.4 GHz</p>
-                <p>ตรวจจับความเคลื่อนไหวด้วย Motion Detection Alarm</p>
-                <p>แจ้งเตือนไปยัง Application โดยอัตโนมัติ</p>
-                <p>บันทึกวิดีโอผ่าน MicroSD Card (สูงสุด 128GB)</p>
-                <p>รองรับการบันทึกผ่าน Cloud Service (อาจมีค่าบริการ)</p>
-                <p>แจ้งเตือนและดูแบบเรียลไทม์ผ่าน Application</p>
-                <p class="font-semibold">รับประกันสินค้า 24 เดือน</p>
+                  <span
+                    v-if="isCheckedRight"
+                    class="text-white font-bold text-xl"
+                    >✔</span
+                  >
+                  <span v-else class="text-red-700 font-bold text-xl">✔</span>
+                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
 
-  <div class="flex items-center justify-center min-h-screen bg-gray-100">
-    <div
-      class="text-center font-bold text-white bg-blue-500 p-6 border-4 border-blue-700 rounded-lg shadow-lg"
-    >
-      ยังไม่ได้ทำงับอิอิ
-      <button
-        @click="someFunction"
-        class="mt-4 text-white bg-red-500 hover:bg-red-700 px-4 py-2 rounded"
+      <!-- แท็บแสดงเนื้อหา -->
+      <div
+        v-if="isCheckedRight"
+        class="mt-8 border border-gray-300 rounded-lg shadow-md bg-white"
       >
-        กลับ
-      </button>
+        <div class="flex">
+          <button
+            @click="activeTab = 'details'"
+            :class="
+              activeTab === 'details'
+                ? 'bg-white text-red-700'
+                : 'bg-gray-200 text-gray-700'
+            "
+            class="flex-1 px-6 py-3 text-center font-bold transition-all duration-300 border-b-2 border-gray-300 text-sm sm:text-base"
+          >
+            รายละเอียดสินค้า
+          </button>
+          <button
+            @click="activeTab = 'script'"
+            :class="
+              activeTab === 'script'
+                ? 'bg-white text-red-700'
+                : 'bg-gray-200 text-gray-700'
+            "
+            class="flex-1 px-6 py-3 text-center font-bold transition-all duration-300 border-b-2 border-gray-300 text-sm sm:text-base"
+          >
+            script
+          </button>
+        </div>
+
+        <div class="p-4 bg-white flex justify-between items-center">
+          <div class="flex">
+            <div v-if="activeTab === 'details'">
+              <div class="space-y-4">
+                <div v-for="(promotion, index) in promotions" :key="index">
+                  <div
+                    class="flex items-center space-x-5 border-b border-gray-200 py-4"
+                  >
+                    <button
+                      class="w-10 h-10 flex justify-center items-center border-2 border-red-700 rounded-full"
+                      :class="{
+                        'bg-red-700 text-white': activeOptionRight === index,
+                        'bg-white text-red-700': activeOptionRight !== index,
+                      }"
+                      @click="setActiveRight(index)"
+                    >
+                      ✔
+                    </button>
+                    <div
+                      class="text-sm sm:text-base font-semibold text-gray-800"
+                    >
+                      {{ promotion.name }}
+                    </div>
+                    <div class="text-red-500 font-semibold text-xs">
+                      {{ promotion.price }}
+                    </div>
+                    <div class="text-gray-700 font-medium text-xs">
+                      {{ promotion.speed }}
+                    </div>
+                    <div class="text-red-500 font-medium text-xs">
+                      {{ promotion.speed2 }}
+                    </div>
+                  </div>
+
+                  <!-- แสดงข้อมูลของโปรโมชั่นที่เลือก -->
+                  <div v-if="activeOptionRight === index" class="mt-2">
+                    <div class="flex mt-4 overflow-x-auto">
+                      <div
+                        v-for="(img, imgIndex) in promotion.images"
+                        :key="imgIndex"
+                        class="flex flex-col items-center justify-center shrink-0"
+                      >
+                        <img
+                          :src="img.src"
+                          :alt="img.text"
+                          :width="img.w"
+                          :height="img.h"
+                          class=""
+                        />
+                        <p
+                          class="text-xs font-semibold mt-2 break-words max-w-16 text-center"
+                        >
+                          {{ img.text }}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div v-else-if="activeTab === 'script'">
+              <p class="text-gray-700 text-center">
+                หน้าที่การทำงานและสคริป ตรวจจับการเปิด/ปิด ประตูหรือหน้าต่าง
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="p-4 rounded-lg shadow-md space-y-4">
+          <div class="text-lg font-bold text-gray-800">รายละเอียดสินค้า</div>
+          <div class="text-sm text-gray-700 leading-relaxed space-y-4">
+            <p>
+              ทรูออนไลน์ได้เปิดตัว
+              <span class="font-semibold">"TrueOnline WiFi7 Router"</span>
+              ซึ่งเป็นเราเตอร์ที่ใช้เทคโนโลยี WiFi 7 ใหม่ล่าสุด
+              มอบความเร็วสูงสุดถึง
+              <span class="font-semibold text-red-600">2 Gbps</span>
+              รองรับการใช้งานพร้อมกันหลายอุปกรณ์ และมาพร้อมเทคโนโลยี
+              <span class="font-semibold">Multi-Link Operation (MLO)</span>
+              ที่ผสานการใช้คลื่นความถี่ 2.4GHz และ 5GHz
+              เพื่อการเชื่อมต่อที่เสถียรและรวดเร็ว
+              <span class="text-blue-600">TRUE.TH</span>
+            </p>
+            <p>
+              ลูกค้าใหม่สามารถสมัครแพ็กเกจเน็ตบ้านไฟเบอร์ความเร็ว
+              <span class="font-semibold text-red-600">2 Gbps</span>
+              เริ่มต้นที่
+              <span class="font-semibold text-green-600"
+                >1,399 บาทต่อเดือน</span
+              >
+              พร้อมรับฟรี TrueOnline WiFi7 Router โดยโปรโมชั่นนี้มีถึงวันที่
+              <span class="font-semibold">31 พฤษภาคม 2568</span>
+              <span class="text-blue-600">TRUE.TH</span>
+            </p>
+            <p>
+              นอกจากนี้ ทรูออนไลน์ยังมีเราเตอร์
+              <span class="font-semibold">WiFi 6E</span>
+              ที่รองรับคลื่นความถี่ 6GHz ให้ความเร็ว WiFi สูงสุดถึง
+              <span class="font-semibold text-red-600">5,665 Mbps</span>
+              และรองรับการเชื่อมต่อพร้อมกันสูงสุดถึง
+              <span class="font-semibold">200 อุปกรณ์</span>
+              เหมาะสำหรับผู้ที่ต้องการความเร็วและความเสถียรในการเชื่อมต่อ
+              <span class="text-blue-600">TRUE.TH</span>
+            </p>
+            <p>
+              สำหรับข้อมูลเพิ่มเติมและการสมัครแพ็กเกจ
+              สามารถติดต่อทรูช็อปหรือเยี่ยมชมเว็บไซต์ของทรูออนไลน์
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ปุ่มซื้อเลยและข้อความ -->
+      <div
+        v-if="isCheckedLeft || (isCheckedRight && activeOptionRight !== null)"
+        class="mt-6 items-center space-y-4"
+      >
+        <div class="justify-center flex">
+          <button
+            class="bg-red-700 text-white px-8 py-3 rounded-lg shadow-xl hover:bg-red-800 transition-all duration-300 text-lg sm:text-xl"
+          >
+            ซื้อเลย
+          </button>
+        </div>
+
+        <div><p>จุดขาย</p></div>
+        <div
+          class="text-center text-sm sm:text-base text-center text-gray-700 mt-4 border border-gray-300 p-4 rounded-lg bg-gray-50"
+        >
+          <p>
+            อุปกรณ์เสริมกระจายสัญญาณ WiFi ครอบคลุมทุกตารางเมตร
+            ให้คุณเล่นเน็ตได้ทุกมุม แรงทุกจุด หมดปัญหาจุดอับสัญญาณภายในบ้าน
+            ติดตั้งง่าย ไม่ต้องเดินสาย LAN Mesh WiFi ทำงานเชื่อมโยงแบบใยแมงมุม
+            เสมือนเครือข่ายเน็ตเวิร์คขนาดใหญ่
+            ที่ค้นหาอุปกรณ์ในเน็ตเวิร์คเดียวกันแบบอัตโนมัติ
+            เพื่อการเชื่อมต่อที่สมบูรณ์แบบ
+            ให้คุณใช้เน็ตบ้านได้อย่างเต็มประสิทธิภาพยิ่งกว่าเดิม
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
 import Header from "../Header.vue";
-import { ref, computed } from "vue";
+import { ref } from "vue";
 
-const noDetails = ref(false);
-function someFunction() {
-  window.history.back();
-}
-// สถานะของกล่องด้านซ้าย
+const promotions = [
+  {
+    name: "โปรชั่น",
+    price: "599",
+    speed: "500/500 Mbps",
+    speed2: "UP 700/700Mbps เดือน",
+    images: [
+      { src: "/2.jpg", text: "กล่องทรูไอดี ทีวี ", w: 70, h: 50 },
+      { src: "/blank.png", text: "+", w: 30, h: 40 },
+      { src: "/pic2.png", text: "10 GB", w: 70, h: 50 },
+      { src: "/blank.png", text: "+", w: 30, h: 40 },
+      {
+        src: "/3.jpg",
+        text: "กล้อง cctv 1ตัว cloud ดูย้อนหลัง 7วัน",
+        w: 40,
+        h: 40,
+      },
+      {
+        src: "/1.jpg",
+        text: "Mesh WiFi",
+        w: 40,
+        h: 40,
+      },
+      { src: "/blank.png", text: "", w: 70, h: 50 },
+      { src: "/11.png", text: "นาน24ชั่วโมง", w: 50, h: 50 },
+      { src: "/blank.png", text: "", w: 10, h: 10 },
+      { src: "/12.png", text: "นาน24ชั่วโมง", w: 70, h: 50 },
+      { src: "/blank.png", text: "", w: 10, h: 10 },
+      { src: "/13.png", text: "ประกันที่อยู่อาศัย24เดือน", w: 70, h: 50 },
+      { src: "/blank.png", text: "", w: 10, h: 10 },
+      { src: "/14.png", text: "ประกันชีวิต24เดือน", w: 70, h: 50 },
+    ],
+  },
+  {
+    name: "โปรโมชั่น",
+    price: "699",
+    speed: "500/500 Mbps",
+    speed2: "UP 700/700Mbps เดือน",
+    images: [
+      { src: "/2.jpg", text: "กล่องทรูไอดี ทีวี ", w: 70, h: 50 },
+      { src: "/blank.png", text: "+", w: 30, h: 40 },
+      { src: "/pic2.png", text: "20 GB", w: 70, h: 50 },
+      { src: "/blank.png", text: "+", w: 30, h: 40 },
+      {
+        src: "/3.jpg",
+        text: "กล้อง cctv 1ตัว cloud ดูย้อนหลัง 7วัน",
+        w: 40,
+        h: 40,
+      },
+      {
+        src: "/1.jpg",
+        text: "Mesh WiFi",
+        w: 40,
+        h: 40,
+      },
+      { src: "/blank.png", text: "", w: 70, h: 50 },
+      { src: "/11.png", text: "นาน24ชั่วโมง", w: 50, h: 50 },
+      { src: "/blank.png", text: "", w: 10, h: 10 },
+      { src: "/12.png", text: "นาน24ชั่วโมง", w: 70, h: 50 },
+      { src: "/blank.png", text: "", w: 10, h: 10 },
+      { src: "/15.png", text: "ประกันที่อยู่อาศัย24เดือน", w: 70, h: 50 },
+    ],
+  },
+  {
+    name: "โปรโมชั่น",
+    price: "799",
+    speed: "1000/500 Mbps",
+    speed2: "UP 1000/1000Mbps เดือน",
+    images: [
+      { src: "/2.jpg", text: "กล่องทรูไอดี ทีวี ", w: 70, h: 50 },
+      { src: "/blank.png", text: "+", w: 30, h: 40 },
+      { src: "/pic2.png", text: "20 GB", w: 70, h: 50 },
+      { src: "/blank.png", text: "+", w: 30, h: 40 },
+      {
+        src: "/3.jpg",
+        text: "กล้อง cctv 1ตัว cloud ดูย้อนหลัง 7วัน",
+        w: 40,
+        h: 40,
+      },
+      {
+        src: "/1.jpg",
+        text: "Mesh WiFi",
+        w: 40,
+        h: 40,
+      },
+      { src: "/blank.png", text: "", w: 70, h: 50 },
+      { src: "/11.png", text: "นาน24ชั่วโมง", w: 50, h: 50 },
+      { src: "/blank.png", text: "", w: 10, h: 10 },
+      { src: "/12.png", text: "นาน24ชั่วโมง", w: 70, h: 50 },
+      { src: "/blank.png", text: "", w: 10, h: 10 },
+      { src: "/15.png", text: "ประกันที่อยู่อาศัย24เดือน", w: 70, h: 50 },
+    ],
+  },
+];
+
 const isCheckedLeft = ref(false);
+const isCheckedRight = ref(false);
+const activeOptionRight = ref(null);
+const activeTab = ref("details");
+
 const toggleCheckLeft = () => {
   isCheckedLeft.value = !isCheckedLeft.value;
   if (isCheckedLeft.value) {
-    isCheckedRight.value = false; // ปิดปุ่มขวาเมื่อกดปุ่มซ้าย
-    isCheckedBox1.value = false; // ปิด checkbox อื่น ๆ เมื่อกดปุ่มซ้าย
-    isCheckedBox2.value = false;
-    isCheckedBox3.value = false;
+    isCheckedRight.value = false;
+    activeOptionRight.value = null;
   }
 };
 
-// สถานะของกล่องด้านขวา
-const isCheckedRight = ref(false);
 const toggleCheckRight = () => {
   isCheckedRight.value = !isCheckedRight.value;
   if (isCheckedRight.value) {
-    isCheckedLeft.value = false; // ปิดปุ่มซ้ายเมื่อกดปุ่มขวา
-    isCheckedBox1.value = false; // ปิด checkbox อื่น ๆ เมื่อกดปุ่มขวา
-    isCheckedBox2.value = false;
-    isCheckedBox3.value = false;
+    isCheckedLeft.value = false;
+    activeOptionRight.value = null;
   }
 };
 
-// สถานะของปุ่มติ๊กถูกภายในกล่อง
-const isCheckedBox1 = ref(false);
-const toggleCheckBox1 = () => {
-  isCheckedBox1.value = !isCheckedBox1.value;
-  // ปิดกล่องอื่น ๆ เมื่อเลือก checkbox1
-  if (isCheckedBox1.value) {
-    isCheckedBox2.value = false;
-    isCheckedBox3.value = false;
-  }
+const setActiveRight = (index) => {
+  activeOptionRight.value = activeOptionRight.value === index ? null : index;
 };
-
-const isCheckedBox2 = ref(false);
-const toggleCheckBox2 = () => {
-  isCheckedBox2.value = !isCheckedBox2.value;
-  // ปิดกล่องอื่น ๆ เมื่อเลือก checkbox2
-  if (isCheckedBox2.value) {
-    isCheckedBox1.value = false;
-    isCheckedBox3.value = false;
-  }
-};
-
-const isCheckedBox3 = ref(false);
-const toggleCheckBox3 = () => {
-  isCheckedBox3.value = !isCheckedBox3.value;
-  // ปิดกล่องอื่น ๆ เมื่อเลือก checkbox3
-  if (isCheckedBox3.value) {
-    isCheckedBox1.value = false;
-    isCheckedBox2.value = false;
-  }
-};
-
-// Computed property to check if any checkbox is checked
-const isAnyChecked = computed(() => {
-  return isCheckedBox1.value || isCheckedBox2.value || isCheckedBox3.value;
-});
 </script>
+
+<style scoped></style>
