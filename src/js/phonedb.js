@@ -138,12 +138,7 @@ export function getUserDevicesByCategory(phone, category) {
   if (!user) return {};
 
   const categoryDevices = {
-    convenience: [
-      "Router WiFi",
-      "กล้อง CCTV",
-      "Mesh WiFi",
-      "IR Remote Control",
-    ],
+    convenience: ["Router WiFi", "Mesh WiFi", "IR Remote Control"],
     security: [
       "Router WiFi",
       "กล้อง CCTV",

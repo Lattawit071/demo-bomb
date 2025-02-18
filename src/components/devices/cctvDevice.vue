@@ -42,7 +42,7 @@
 
             <div class="flex justify-between mb-3">
               <div class="flex">
-                <p class="text-red-700 font-bold text-xl mr-1">990.-</p>
+                <p class="text-red-700 font-bold text-xl mr-1">890.-</p>
                 <p class="text-sm pt-2">เดือน</p>
               </div>
               <button

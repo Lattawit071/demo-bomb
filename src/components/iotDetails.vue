@@ -1,22 +1,29 @@
 <template>
   <div class="mb-20">
     <Header v-if="!isIoTDevicesPage" />
-    <div class="mx-2">
-      <div class="text-center mt-3">
-        <p class="text-md font-bold">IOT Devices</p>
+    <div class="mx-4">
+      <div class="text-center mt-6">
+        <p class="text-lg font-extrabold text-gray-800">IoT Devices</p>
       </div>
 
-      <div class="flex mt-5">
+      <div class="flex mt-6 space-x-2">
         <div
-          class="border border-gray-300 flex-1 text-center p-2"
-          :class="{ 'bg-red-300': selectedCategory === 'convenience' }"
+          class="border border-gray-300 flex-1 text-center py-2 rounded-lg cursor-pointer transition-colors"
+          :class="{
+            'bg-red-300 text-white font-bold':
+              selectedCategory === 'convenience',
+            'hover:bg-gray-100': selectedCategory !== 'convenience',
+          }"
           @click="selectedCategory = 'convenience'"
         >
           Convenience
         </div>
         <div
-          class="border border-gray-300 flex-1 text-center p-2"
-          :class="{ 'bg-red-300': selectedCategory === 'security' }"
+          class="border border-gray-300 flex-1 text-center py-2 rounded-lg cursor-pointer transition-colors"
+          :class="{
+            'bg-red-300 text-white font-bold': selectedCategory === 'security',
+            'hover:bg-gray-100': selectedCategory !== 'security',
+          }"
           @click="selectedCategory = 'security'"
         >
           Security
@@ -26,41 +33,43 @@
       <div>
         <div
           v-if="selectedUser"
-          class="flex flex-wrap gap-3 p-5 justify-start border border-gray-300 bg-red-200"
+          class="border border-gray-300 bg-red-100 min-h-screen p-6 rounded-lg mt-6 shadow-md"
         >
-          <div
-            v-for="(hasDevice, device) in filteredDevices"
-            :key="device"
-            class="flex flex-col items-center border border-gray-200 bg-white rounded-lg w-20 max-w-[130px] min-w-[100px] shrink-0 cursor-pointer"
-          >
-            <router-link
-              :to="{
-                path: `/phone-detail/${selectedPhone}/iot-devices/${device
-                  .toLowerCase()
-                  .replace(/ /g, '-')}`,
-              }"
-              class="flex flex-col items-center w-full"
+          <div class="flex flex-wrap gap-4 justify-start">
+            <div
+              v-for="(hasDevice, device) in filteredDevices"
+              :key="device"
+              class="flex flex-col items-center border border-gray-200 bg-white rounded-lg shadow hover:shadow-lg transition-all w-28 max-w-[130px] min-w-[100px] p-4 cursor-pointer"
             >
-              <div class="w-12 h-12 flex justify-center pt-3 items-center mb-2">
-                <img
-                  :src="getDeviceIcon(device)"
-                  class="w-full h-full object-contain"
-                />
-              </div>
-              <div class="text-center pb-2">
-                <p class="text-xs font-medium">{{ device }}</p>
-                <div
-                  class="w-2 h-2 rounded-full mt-1 mx-auto"
-                  :class="hasDevice ? 'bg-green-500' : 'bg-gray-300'"
-                ></div>
-              </div>
-            </router-link>
+              <router-link
+                :to="{
+                  path: `/phone-detail/${selectedPhone}/iot-devices/${device
+                    .toLowerCase()
+                    .replace(/ /g, '-')}`,
+                }"
+                class="flex flex-col items-center w-full"
+              >
+                <div class="w-16 h-16 flex justify-center items-center mb-3">
+                  <img
+                    :src="getDeviceIcon(device)"
+                    class="w-full h-full object-contain"
+                  />
+                </div>
+                <div class="text-center">
+                  <p class="text-sm font-medium text-gray-800">{{ device }}</p>
+                  <div
+                    class="w-3 h-3 rounded-full mt-2 mx-auto"
+                    :class="hasDevice ? 'bg-green-500' : 'bg-gray-300'"
+                  ></div>
+                </div>
+              </router-link>
+            </div>
           </div>
         </div>
       </div>
     </div>
+    <CustomerFooter v-if="isIoTDevicesPage" />
   </div>
-  <CustomerFooter v-if="isIoTDevicesPage" />
 </template>
 
 <script setup>
