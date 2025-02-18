@@ -4,7 +4,7 @@
     <div class="max-w-4xl p-6">
       <div class="mt-6 text-center">
         <p class="text-lg sm:text-xl font-bold text-gray-800 leading-snug">
-          Router WiFi
+          Mesh WiFi
         </p>
       </div>
       <div class="flex justify-center items-center mt-5">
@@ -208,7 +208,7 @@ import { ref } from "vue";
 
 const promotions = [
   {
-    name: "โปรชั่น",
+    name: "โปรโมรชั่น",
     price: "599",
     speed: "500/500 Mbps",
     speed2: "UP 700/700Mbps 24เดือน",

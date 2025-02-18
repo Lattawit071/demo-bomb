@@ -214,7 +214,7 @@ import { ref } from "vue";
 
 const promotions = [
   {
-    name: "โปรชั่น",
+    name: "โปรโมชั่น",
     price: "599",
     speed: "500/500 Mbps",
     speed2: "UP 700/700Mbps 24เดือน",
