@@ -1,22 +1,21 @@
 <template>
   <div class="mb-16">
     <Header />
-    <div class="mx-auto max-w-4xl p-6">
+    <div class="max-w-4xl p-6">
       <div class="mt-6 text-center">
-        <p class="text-lg sm:text-xl font-semibold text-gray-800 leading-snug">
-          TrueLivingTECH Door Windows Sensor เซนเซอร์อัจฉริยะตรวจจับผู้บุกรุก
+        <p class="text-lg sm:text-xl font-bold text-gray-800 leading-snug">
+          Smart Door & Window Sensor
+        </p>
+        <p class="text-lg sm:text-xl font-bold text-gray-800 leading-snug">
+          เซ็นเซอร์ตรวจจับผู้บุกรุก
         </p>
       </div>
       <div class="flex justify-center items-center mt-5">
-        <img src="/7.jpg" alt="Product" class="w-2/5" />
+        <img src="/10.png" alt="Product" class="w-1/5" />
       </div>
 
-      <!-- ชื่อสินค้า -->
+      <p class="mt-6 text-lg sm:text-xl font-bold">โปรชั่นทั่วไป</p>
 
-      <!-- หัวข้อโปรโมชัน -->
-      <p class="mt-6 text-lg sm:text-xl font-bold">โปรโมรชั่นทั่วไป</p>
-
-      <!-- การ์ดสินค้า -->
       <div class="flex gap-4 mt-6 justify-center">
         <!-- กล่องแรก -->
         <div
@@ -91,11 +90,80 @@
         </div>
       </div>
 
-      <!-- แท็บแสดงเนื้อหา -->
+      <div v-if="isCheckedRight" class="flex mt-5 ml-2 p-2">
+        <div>
+          <div class="space-y-4">
+            <div v-for="(promotion, index) in promotions" :key="index">
+              <div
+                class="flex items-center space-x-5 border-b border-gray-200 py-4"
+              >
+                <button
+                  class="w-10 h-10 flex justify-center items-center border-2 border-red-700 rounded-md rounded-full"
+                  :class="{
+                    'bg-red-700 text-white': activeOptionRight === index,
+                    'bg-white text-red-700': activeOptionRight !== index,
+                  }"
+                  @click="setActiveRight(index)"
+                >
+                  ✔
+                </button>
+                <div class="sm:text-base font-semibold text-gray-800">
+                  {{ promotion.name }}
+                </div>
+                <div class="text-red-500 font-semibold">
+                  {{ promotion.price }}
+                </div>
+                <div class="text-gray-700 font-medium">
+                  {{ promotion.speed }}
+                </div>
+                <div class="text-red-500 font-medium">
+                  {{ promotion.speed2 }}
+                </div>
+              </div>
+
+              <div
+                v-if="activeOptionRight === index"
+                class="mt-2 border-2 border-red-700 rounded-lg p-3"
+              >
+                <div class="flex mt-4 overflow-x-auto">
+                  <div
+                    v-for="(img, imgIndex) in promotion.images"
+                    :key="imgIndex"
+                    class="flex flex-col items-center justify-center shrink-0"
+                  >
+                    <img
+                      :src="img.src"
+                      :alt="img.text"
+                      :width="img.w"
+                      :height="img.h"
+                      class=""
+                    />
+                    <p
+                      class="text-xs font-semibold mt-2 break-words max-w-16 text-center"
+                    >
+                      {{ img.text }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div
-        v-if="isCheckedRight"
-        class="mt-8 border border-gray-300 rounded-lg shadow-md bg-white"
+        v-if="isCheckedLeft || (isCheckedRight && activeOptionRight !== null)"
+        class="mt-6 items-center space-y-4"
       >
+        <div class="justify-center flex">
+          <button
+            class="bg-red-700 text-white px-8 py-3 rounded-lg shadow-xl hover:bg-red-800 transition-all duration-300 text-lg sm:text-xl"
+          >
+            ซื้อเลย
+          </button>
+        </div>
+      </div>
+
+      <div class="mt-8 border border-gray-300 rounded-lg shadow-md bg-white">
         <div class="flex">
           <button
             @click="activeTab = 'details'"
@@ -121,93 +189,45 @@
           </button>
         </div>
 
-        <div class="p-4 bg-white flex justify-between items-center">
-          <div class="flex">
-            <div v-if="activeTab === 'details'">
-              <div class="space-y-4">
-                <div v-for="(promotion, index) in promotions" :key="index">
-                  <div
-                    class="flex items-center space-x-5 border-b border-gray-200 py-4"
-                  >
-                    <button
-                      class="w-10 h-10 flex justify-center items-center border-2 border-red-700 rounded-full"
-                      :class="{
-                        'bg-red-700 text-white': activeOptionRight === index,
-                        'bg-white text-red-700': activeOptionRight !== index,
-                      }"
-                      @click="setActiveRight(index)"
-                    >
-                      ✔
-                    </button>
-                    <div
-                      class="text-sm sm:text-base font-semibold text-gray-800"
-                    >
-                      {{ promotion.name }}
-                    </div>
-                    <div class="text-red-500 font-semibold">
-                      {{ promotion.price }}
-                    </div>
-                    <div class="text-gray-700 font-medium">
-                      {{ promotion.speed }}
-                    </div>
-                  </div>
+        <div class="bg-white flex justify-between items-center"></div>
 
-                  <!-- แสดงข้อมูลของโปรโมชั่นที่เลือก -->
-                  <div v-if="activeOptionRight === index" class="mt-2">
-                    <div class="flex mt-4 overflow-x-auto">
-                      <div
-                        v-for="(img, imgIndex) in promotion.images"
-                        :key="imgIndex"
-                        class="flex flex-col items-center justify-center shrink-0"
-                      >
-                        <img
-                          :src="img.src"
-                          :alt="img.text"
-                          :width="img.w"
-                          :height="img.h"
-                          class=""
-                        />
-                        <p
-                          class="text-xs font-semibold mt-2 break-words max-w-16 text-center"
-                        >
-                          {{ img.text }}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div v-else-if="activeTab === 'script'">
-              <p class="text-gray-700 text-center">
-                หน้าที่การทำงานและสคริป ตรวจจับการเปิด/ปิด ประตูหรือหน้าต่าง
-              </p>
-            </div>
+        <div
+          v-if="activeTab === 'details'"
+          class="p-4 rounded-lg shadow-md space-y-4"
+        >
+          <div class="text-sm text-gray-700 leading-relaxed space-y-4">
+            <p>
+              TrueLivingTECH ได้เปิดตัว
+              <span class="font-semibold">"Smart Door/Window Sensor"</span>
+              ซึ่งเป็นเซ็นเซอร์อัจฉริยะที่ใช้เทคโนโลยี Zigbee
+              ช่วยในการตรวจจับการเปิด-ปิดของประตูหรือหน้าต่าง
+              เพื่อเพิ่มความปลอดภัยในบ้าน
+              พร้อมทั้งรองรับการเชื่อมต่อกับอุปกรณ์สมาร์ทโฮมอื่น ๆ ผ่านแพลตฟอร์ม
+              TrueLivingTECH
+            </p>
+            <p>
+              ลูกค้าสามารถซื้อ Smart Door/Window Sensor ได้ในราคา
+              <span class="font-semibold">990 บาท</span>
+              พร้อมรับประกันสินค้า 1 ปี
+            </p>
+            <p>
+              เซ็นเซอร์นี้ยังมาพร้อมกับฟีเจอร์แจ้งเตือนทันทีผ่านแอปพลิเคชัน
+              หากมีการเปิดหรือปิดประตูหรือหน้าต่าง
+              สามารถควบคุมและตรวจสอบสถานะได้ ผ่านสมาร์ทโฟนทุกที่ทุกเวลา
+            </p>
+            <p>
+              สำหรับข้อมูลเพิ่มเติมและการซื้อสินค้า สามารถติดต่อ TrueLivingTECH
+              หรือเยี่ยมชมเว็บไซต์ของเรา
+            </p>
           </div>
         </div>
-      </div>
 
-      <!-- ปุ่มซื้อเลยและข้อความ -->
-      <div
-        v-if="isCheckedLeft || (isCheckedRight && activeOptionRight !== null)"
-        class="mt-6 items-center space-y-4"
-      >
-        <div class="justify-center flex">
-          <button
-            class="bg-red-700 text-white px-8 py-3 rounded-lg shadow-xl hover:bg-red-800 transition-all duration-300 text-lg sm:text-xl"
-          >
-            ซื้อเลย
-          </button>
-        </div>
-
-        <div><p>จุดขาย</p></div>
         <div
-          class="text-center text-sm sm:text-base text-center text-gray-700 mt-4 border border-gray-300 p-4 rounded-lg bg-gray-50"
+          v-if="activeTab === 'script'"
+          class="p-4 rounded-lg shadow-md space-y-4"
         >
-          <p>
-            ㆍตรวจจับการ เปิด/ปิด ประตูหรือหน้าต่าง หลังจากตรวจจับได้แล้ว
-            อุปกรณ์
+          <p class="text-gray-700 text-center">
+            ตรวจจับการ เปิด/ปิด ประตูหรือหน้าต่าง หลังจากตรวจจับได้แล้ว อุปกรณ์
             จะทำแจ้งเตือนไปผ่านไปยังสมาร์ทโฟนของคุณโดยทันทีผ่านแอปพลิเคชัน TrueX
             ช่วยแจ้งเตือนคุณหากผู้บุกรุกเปิดประตูหรือหน้าต่างภายในบ้านของ คุณ
             นอกจากนี้หากคุณเพิ่งออกจากบ้านและเผลอลืมไปว่าคุณปิดประ ตูและ
@@ -227,7 +247,7 @@ const promotions = [
   {
     name: "โปรโมรชั่น",
     price: "900",
-    speed: "100/500 Mbps",
+    speed: "1000/500 Mbps",
     images: [
       { src: "/pic1.png", text: "1เครื่อง", w: 70, h: 70 },
       { src: "/blank.png", text: "", w: 70, h: 50 },

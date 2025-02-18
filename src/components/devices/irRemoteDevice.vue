@@ -1,7 +1,7 @@
 <template>
   <div class="mb-16">
     <Header />
-    <div class="mx-auto max-w-4xl p-6">
+    <div class="max-w-4xl p-6">
       <div class="mt-6 text-center">
         <p class="text-lg sm:text-xl font-bold text-gray-800 leading-snug">
           TrueLivingTECH Zigbee Mini Hub
@@ -14,16 +14,9 @@
         <img src="/5.jpg" alt="Product" class="w-2/5" />
       </div>
 
-      <!-- ชื่อสินค้า -->
+      <p class="mt-6 text-lg sm:text-xl font-bold">โปรชั่นทั่วไป</p>
 
-      <!-- หัวข้อโปรโมชัน -->
-      <p class="mt-6 text-lg sm:text-xl font-bold">โปรโมรชั่นทั่วไป</p>
-
-      <!-- การ์ดสินค้า -->
       <div class="flex gap-4 mt-6 justify-center">
-        <!-- กล่องแรก -->
-
-        <!-- กล่องใหม่ -->
         <div
           class="border-2 border-red-700 rounded-lg p-4 shadow-lg hover:shadow-xl transition-all duration-300 bg-white w-full sm:w-1/2 lg:w-1/3"
         >
@@ -32,23 +25,22 @@
               เครื่องเปล่า
             </p>
           </div>
-          <!-- ข้อความโปรโมชั่น -->
           <div class="mt-3 text-center text-base sm:text-lg text-gray-700">
             <p class="">ราคา</p>
             <div class="flex justify-center items-center mt-2">
               <p class="text-xl font-semibold text-red-500">199.-</p>
-              <p class="ml-2 text-sm sm:text-base">บาท</p>
+              <p class="ml-2 text-sm sm:text-base">เดือน</p>
               <div class="ml-4">
                 <button
                   class="w-10 h-10 flex justify-center items-center border-2 border-red-700 rounded-full transition-all duration-300 transform hover:scale-110"
                   :class="{
-                    'bg-red-700': isCheckedLeft,
-                    'bg-white': !isCheckedLeft,
+                    'bg-red-700': isCheckedRight,
+                    'bg-white': !isCheckedRight,
                   }"
-                  @click="toggleCheckLeft"
+                  @click="toggleCheckRight"
                 >
                   <span
-                    v-if="isCheckedLeft"
+                    v-if="isCheckedRight"
                     class="text-white font-bold text-xl"
                     >✔</span
                   >
@@ -60,11 +52,17 @@
         </div>
       </div>
 
-      <!-- แท็บแสดงเนื้อหา -->
-      <div
-        v-if="isCheckedRight"
-        class="mt-8 border border-gray-300 rounded-lg shadow-md bg-white"
-      >
+      <div v-if="isCheckedRight" class="mt-6 items-center space-y-4">
+        <div class="justify-center flex">
+          <button
+            class="bg-red-700 text-white px-8 py-3 rounded-lg shadow-xl hover:bg-red-800 transition-all duration-300 text-lg sm:text-xl"
+          >
+            ซื้อเลย
+          </button>
+        </div>
+      </div>
+
+      <div class="mt-8 border border-gray-300 rounded-lg shadow-md bg-white">
         <div class="flex">
           <button
             @click="activeTab = 'details'"
@@ -90,102 +88,52 @@
           </button>
         </div>
 
-        <div class="p-4 bg-white flex justify-between items-center">
-          <div class="flex">
-            <div v-if="activeTab === 'details'">
-              <div class="space-y-4">
-                <div v-for="(promotion, index) in promotions" :key="index">
-                  <div
-                    class="flex items-center space-x-5 border-b border-gray-200 py-4"
-                  >
-                    <button
-                      class="w-10 h-10 flex justify-center items-center border-2 border-red-700 rounded-full"
-                      :class="{
-                        'bg-red-700 text-white': activeOptionRight === index,
-                        'bg-white text-red-700': activeOptionRight !== index,
-                      }"
-                      @click="setActiveRight(index)"
-                    >
-                      ✔
-                    </button>
-                    <div
-                      class="text-sm sm:text-base font-semibold text-gray-800"
-                    >
-                      {{ promotion.name }}
-                    </div>
-                    <div class="text-red-500 font-semibold">
-                      {{ promotion.price }}
-                    </div>
-                    <div class="text-gray-700 font-medium">
-                      {{ promotion.speed }}
-                    </div>
-                  </div>
+        <div class="bg-white flex justify-between items-center"></div>
 
-                  <!-- แสดงข้อมูลของโปรโมชั่นที่เลือก -->
-                  <div v-if="activeOptionRight === index" class="mt-2">
-                    <div class="flex mt-4 overflow-x-auto">
-                      <div
-                        v-for="(img, imgIndex) in promotion.images"
-                        :key="imgIndex"
-                        class="flex flex-col items-center justify-center shrink-0"
-                      >
-                        <img
-                          :src="img.src"
-                          :alt="img.text"
-                          :width="img.w"
-                          :height="img.h"
-                          class=""
-                        />
-                        <p
-                          class="text-xs font-semibold mt-2 break-words max-w-16 text-center"
-                        >
-                          {{ img.text }}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div v-else-if="activeTab === 'script'">
-              <p class="text-gray-700 text-center">
-                หน้าที่การทำงานและสคริป ตรวจจับการเปิด/ปิด ประตูหรือหน้าต่าง
-              </p>
-            </div>
+        <div
+          v-if="activeTab === 'details'"
+          class="p-4 rounded-lg shadow-md space-y-4"
+        >
+          <div class="text-sm text-gray-700 leading-relaxed space-y-4">
+            <p>
+              TrueLivingTECH ได้เปิดตัว
+              <span class="font-semibold"
+                >"TrueLivingTECH Zigbee Mini Hub"</span
+              >
+              ซึ่งเป็นอุปกรณ์ที่ใช้เทคโนโลยี Zigbee 3.0 ใหม่ล่าสุด
+              รองรับการเชื่อมต่อกับอุปกรณ์สมาร์ทโฮมได้สูงสุดถึง
+              <span class="font-semibold">32 อุปกรณ์</span>
+              มาพร้อมการเชื่อมต่อไร้สายผ่าน Wi-Fi 2.4GHz และ Zigbee 3.0
+              เพื่อความเสถียรในการเชื่อมต่อและการควบคุมที่รวดเร็ว
+            </p>
+            <p>
+              ลูกค้าที่สนใจสามารถซื้อ TrueLivingTECH Zigbee Mini Hub ได้ในราคา
+              <span class="font-semibold">1,490 บาท</span>
+              พร้อมรับประกันสินค้า 1 ปี
+            </p>
+            <p>
+              นอกจากนี้ ตัวอุปกรณ์ยังรองรับการใช้งานร่วมกับอุปกรณ์สมาร์ทโฮม
+              จากหลายแบรนด์ เพื่อให้คุณสามารถควบคุมและตรวจสอบสถานะอุปกรณ์ต่าง ๆ
+              ผ่านแอปพลิเคชันบนสมาร์ทโฟนได้อย่างสะดวกสบาย
+            </p>
+            <p>
+              สำหรับข้อมูลเพิ่มเติมและการซื้อสินค้าสามารถติดต่อ TrueLivingTECH
+              หรือเยี่ยมชมเว็บไซต์ของเรา
+            </p>
           </div>
         </div>
-      </div>
 
-      <!-- ปุ่มซื้อเลยและข้อความ -->
-      <div
-        v-if="isCheckedLeft || (isCheckedRight && activeOptionRight !== null)"
-        class="mt-6 items-center space-y-4"
-      >
-        <div class="justify-center flex">
-          <button
-            class="bg-red-700 text-white px-8 py-3 rounded-lg shadow-xl hover:bg-red-800 transition-all duration-300 text-lg sm:text-xl"
-          >
-            ซื้อเลย
-          </button>
-        </div>
-
-        <div><p>จุดขาย</p></div>
         <div
-          class="text-center text-sm sm:text-base text-center text-gray-700 mt-4 border border-gray-300 p-4 rounded-lg bg-gray-50"
+          v-if="activeTab === 'script'"
+          class="p-4 rounded-lg shadow-md space-y-4"
         >
-          <li class="">GATEWAY ZIGBEE MINI HUB - Black</li>
-          <li>
-            ศูนย์กลางการเชื่อมต่อของ อุปกรณ์ Smart Home ผ่านสัญญาณระบบ Zigbee
-          </li>
-          <li>
-            ใช้งานร่วมกับอุปกรณ์ sensor ระบบสัญญาณ Zigbee เช่น Door/Window
-            Sensor, Motion Sensor เป็นต้น
-          </li>
-          <li>
+          <p class="text-gray-700 text-center">
+            GATEWAY ZIGBEE MINI HUB - Black ศูนย์กลางการเชื่อมต่อของ อุปกรณ์
+            Smart Home ผ่านสัญญาณระบบ Zigbee ใช้งานร่วมกับอุปกรณ์ sensor
+            ระบบสัญญาณ Zigbee เช่น Door/Window Sensor, Motion Sensor เป็นต้น
             ช่วยให้คุณควบคุมอุปกรณ์ไฟฟ้า
             และระบบรักษาความปลอดภัยภายในบ้านได้อย่างง่ายดาย
-          </li>
+          </p>
         </div>
       </div>
     </div>

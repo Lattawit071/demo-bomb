@@ -1,36 +1,30 @@
 <template>
   <div class="mb-16">
     <Header />
-    <div class="mx-auto max-w-4xl p-6">
+    <div class="max-w-4xl p-6">
       <div class="mt-6 text-center">
-        <p class="text-lg sm:text-xl font-semibold text-gray-800 leading-snug">
+        <p class="text-lg sm:text-xl font-bold text-gray-800 leading-snug">
           Smart Motion Sensor
         </p>
-        <p class="text-lg sm:text-xl font-semibold text-gray-800 leading-snug">
+        <p class="text-lg sm:text-xl font-bold text-gray-800 leading-snug">
           เซ็นเซอร์อัจฉริยะตรวจจับความเคลื่อนไหว
         </p>
       </div>
       <div class="flex justify-center items-center mt-5">
-        <img src="/6.jpg" alt="Product" class="w-3/5" />
+        <img src="/6.jpg" alt="Product" class="w-2/5" />
       </div>
 
-      <!-- ชื่อสินค้า -->
-
-      <!-- หัวข้อโปรโมชัน -->
       <p class="mt-6 text-lg sm:text-xl font-bold">โปรชั่นทั่วไป</p>
 
-      <!-- การ์ดสินค้า -->
-      <div class="mt-6">
-        <!-- กล่องแรก -->
+      <div class="flex gap-4 mt-6 justify-center">
         <div
-          class="border-2 border-red-700 rounded-lg p-2 shadow-lg hover:shadow-xl transition-all duration-300 bg-white"
+          class="border-2 border-red-700 rounded-lg p-4 shadow-lg hover:shadow-xl transition-all duration-300 bg-white w-full sm:w-1/2 lg:w-1/3"
         >
           <div class="text-center">
             <p class="font-bold text-base sm:text-lg text-gray-700">
               ลูกค้าทรูออนไลน์
             </p>
           </div>
-          <!-- ข้อความโปรโมชั่น -->
           <div class="mt-3 text-center text-base sm:text-lg text-gray-700">
             <p class="">ราคา</p>
             <div class="flex justify-center items-center mt-2">
@@ -58,11 +52,80 @@
         </div>
       </div>
 
-      <!-- แท็บแสดงเนื้อหา -->
+      <div v-if="isCheckedRight" class="flex mt-5 ml-2 p-2">
+        <div>
+          <div class="space-y-4">
+            <div v-for="(promotion, index) in promotions" :key="index">
+              <div
+                class="flex items-center space-x-5 border-b border-gray-200 py-4"
+              >
+                <button
+                  class="w-10 h-10 flex justify-center items-center border-2 border-red-700 rounded-md rounded-full"
+                  :class="{
+                    'bg-red-700 text-white': activeOptionRight === index,
+                    'bg-white text-red-700': activeOptionRight !== index,
+                  }"
+                  @click="setActiveRight(index)"
+                >
+                  ✔
+                </button>
+                <div class="sm:text-base font-semibold text-gray-800">
+                  {{ promotion.name }}
+                </div>
+                <div class="text-red-500 font-semibold">
+                  {{ promotion.price }}
+                </div>
+                <div class="text-gray-700 font-medium">
+                  {{ promotion.speed }}
+                </div>
+                <div class="text-red-500 font-medium">
+                  {{ promotion.speed2 }}
+                </div>
+              </div>
+
+              <div
+                v-if="activeOptionRight === index"
+                class="mt-2 border-2 border-red-700 rounded-lg p-3"
+              >
+                <div class="flex mt-4 overflow-x-auto">
+                  <div
+                    v-for="(img, imgIndex) in promotion.images"
+                    :key="imgIndex"
+                    class="flex flex-col items-center justify-center shrink-0"
+                  >
+                    <img
+                      :src="img.src"
+                      :alt="img.text"
+                      :width="img.w"
+                      :height="img.h"
+                      class=""
+                    />
+                    <p
+                      class="text-xs font-semibold mt-2 break-words max-w-16 text-center"
+                    >
+                      {{ img.text }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div
-        v-if="isCheckedRight"
-        class="mt-8 border border-gray-300 rounded-lg shadow-md bg-white"
+        v-if="isCheckedLeft || (isCheckedRight && activeOptionRight !== null)"
+        class="mt-6 items-center space-y-4"
       >
+        <div class="justify-center flex">
+          <button
+            class="bg-red-700 text-white px-8 py-3 rounded-lg shadow-xl hover:bg-red-800 transition-all duration-300 text-lg sm:text-xl"
+          >
+            ซื้อเลย
+          </button>
+        </div>
+      </div>
+
+      <div class="mt-8 border border-gray-300 rounded-lg shadow-md bg-white">
         <div class="flex">
           <button
             @click="activeTab = 'details'"
@@ -88,92 +151,48 @@
           </button>
         </div>
 
-        <div class="p-4 bg-white flex justify-between items-center">
-          <div class="flex">
-            <div v-if="activeTab === 'details'">
-              <div class="space-y-4">
-                <div v-for="(promotion, index) in promotions" :key="index">
-                  <div
-                    class="flex items-center space-x-5 border-b border-gray-200 py-4"
-                  >
-                    <button
-                      class="w-10 h-10 flex justify-center items-center border-2 border-red-700 rounded-full"
-                      :class="{
-                        'bg-red-700 text-white': activeOptionRight === index,
-                        'bg-white text-red-700': activeOptionRight !== index,
-                      }"
-                      @click="setActiveRight(index)"
-                    >
-                      ✔
-                    </button>
-                    <div
-                      class="text-sm sm:text-base font-semibold text-gray-800"
-                    >
-                      {{ promotion.name }}
-                    </div>
-                    <div class="text-red-500 font-semibold">
-                      {{ promotion.price }}
-                    </div>
-                    <div class="text-gray-700 font-medium">
-                      {{ promotion.speed }}
-                    </div>
-                  </div>
+        <div class="bg-white flex justify-between items-center"></div>
 
-                  <!-- แสดงข้อมูลของโปรโมชั่นที่เลือก -->
-                  <div v-if="activeOptionRight === index" class="mt-2">
-                    <div class="flex mt-4 overflow-x-auto">
-                      <div
-                        v-for="(img, imgIndex) in promotion.images"
-                        :key="imgIndex"
-                        class="flex flex-col items-center justify-center shrink-0"
-                      >
-                        <img
-                          :src="img.src"
-                          :alt="img.text"
-                          :width="img.w"
-                          :height="img.h"
-                          class=""
-                        />
-                        <p
-                          class="text-xs font-semibold mt-2 break-words max-w-16 text-center"
-                        >
-                          {{ img.text }}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div v-else-if="activeTab === 'script'">
-              <p class="text-gray-700 text-center">
-                หน้าที่การทำงานและสคริป ตรวจจับการเปิด/ปิด ประตูหรือหน้าต่าง
-              </p>
-            </div>
+        <div
+          v-if="activeTab === 'details'"
+          class="p-4 rounded-lg shadow-md space-y-4"
+        >
+          <div class="text-sm text-gray-700 leading-relaxed space-y-4">
+            <p>
+              ทรูออนไลน์ได้เปิดตัว
+              <span class="font-semibold">"Smart Motion Sensor"</span>
+              เซ็นเซอร์อัจฉริยะที่สามารถตรวจจับความเคลื่อนไหวได้อย่างแม่นยำ
+              มอบความปลอดภัยให้กับบ้านคุณ
+              ด้วยการแจ้งเตือนทันทีเมื่อมีการเคลื่อนไหวที่ไม่พึงประสงค์
+              รองรับการใช้งานผ่านแอปพลิเคชัน TrueSmart
+              สำหรับการตั้งค่าและการตรวจสอบ
+            </p>
+            <p>
+              ลูกค้าใหม่สามารถสมัครแพ็กเกจเน็ตบ้านไฟเบอร์ความเร็ว
+              <span class="font-semibold">1 Gbps</span>
+              เริ่มต้นที่
+              <span class="font-semibold">899 บาทต่อเดือน</span>
+              พร้อมรับฟรี Smart Motion Sensor โดยโปรโมชั่นนี้มีถึงวันที่
+              <span class="font-semibold">31 ธันวาคม 2568</span>
+            </p>
+            <p>
+              เซ็นเซอร์อัจฉริยะนี้ยังสามารถเชื่อมต่อกับอุปกรณ์อื่นๆ ในระบบ Smart
+              Home เพื่อให้คุณสามารถควบคุม การทำงานของอุปกรณ์ต่างๆ
+              ได้อย่างสะดวกและปลอดภัย
+            </p>
+            <p>
+              สำหรับข้อมูลเพิ่มเติมและการสมัครแพ็กเกจ
+              สามารถติดต่อทรูช็อปหรือเยี่ยมชมเว็บไซต์ของทรูออนไลน์
+            </p>
           </div>
         </div>
-      </div>
 
-      <!-- ปุ่มซื้อเลยและข้อความ -->
-      <div
-        v-if="isCheckedLeft || (isCheckedRight && activeOptionRight !== null)"
-        class="mt-6 items-center space-y-4"
-      >
-        <div class="justify-center flex">
-          <button
-            class="bg-red-700 text-white px-8 py-3 rounded-lg shadow-xl hover:bg-red-800 transition-all duration-300 text-lg sm:text-xl"
-          >
-            ซื้อเลย
-          </button>
-        </div>
-
-        <div><p>จุดขาย</p></div>
         <div
-          class="text-center text-sm sm:text-base text-center text-gray-700 mt-4 border border-gray-300 p-4 rounded-lg bg-gray-50"
+          v-if="activeTab === 'script'"
+          class="p-4 rounded-lg shadow-md space-y-4"
         >
-          <p>
-            ㆍเพื่อใช้ในการตรวจจับความเคลื่อนไหวทางกายภาพของวัตถุ เมื่อมีการ
+          <p class="text-gray-700 text-center">
+            เพื่อใช้ในการตรวจจับความเคลื่อนไหวทางกายภาพของวัตถุ เมื่อมีการ
             เคลื่อนไหวในขอบเขตรัศมีที่กำหนด ระยะการตรวจจับ 10 เมตร (มุมการ
             ตรวจจับ 128 องศา) หลังจากตรวจจับได้แล้ว อุปกรณ์จะทำแจ้งเตือนไปผ่าน
             ไปยังสมาร์ทโฟนของคุณโดยทันทีผ่านแอปพลิเคชัน TrueX
@@ -220,8 +239,8 @@ const promotions = [
 ];
 
 const isCheckedLeft = ref(false);
-const isCheckedRight = ref(true);
-const activeOptionRight = ref(0);
+const isCheckedRight = ref(false);
+const activeOptionRight = ref(null);
 const activeTab = ref("details");
 
 const toggleCheckLeft = () => {

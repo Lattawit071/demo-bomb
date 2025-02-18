@@ -3,26 +3,26 @@
     <Header v-if="!isIoTDevicesPage" />
     <div class="mx-4">
       <div class="text-center mt-6">
-        <p class="text-lg font-extrabold text-gray-800">IoT Devices</p>
+        <p class="text-2xl font-extrabold text-gray-800">IoT Devices</p>
       </div>
 
-      <div class="flex mt-6 space-x-2">
+      <div class="flex mt-6 space-x-4 justify-center">
         <div
-          class="border border-gray-300 flex-1 text-center py-2 rounded-lg cursor-pointer transition-colors"
+          class="border border-gray-300 flex-1 text-center py-2 rounded-lg cursor-pointer transition-colors hover:bg-gray-100"
           :class="{
-            'bg-red-300 text-white font-bold':
+            'bg-red-500 text-white font-bold':
               selectedCategory === 'convenience',
-            'hover:bg-gray-100': selectedCategory !== 'convenience',
+            'hover:bg-red-100': selectedCategory !== 'convenience',
           }"
           @click="selectedCategory = 'convenience'"
         >
           Convenience
         </div>
         <div
-          class="border border-gray-300 flex-1 text-center py-2 rounded-lg cursor-pointer transition-colors"
+          class="border border-gray-300 flex-1 text-center py-2 rounded-lg cursor-pointer transition-colors hover:bg-gray-100"
           :class="{
-            'bg-red-300 text-white font-bold': selectedCategory === 'security',
-            'hover:bg-gray-100': selectedCategory !== 'security',
+            'bg-red-500 text-white font-bold': selectedCategory === 'security',
+            'hover:bg-red-100': selectedCategory !== 'security',
           }"
           @click="selectedCategory = 'security'"
         >
@@ -33,13 +33,13 @@
       <div>
         <div
           v-if="selectedUser"
-          class="border border-gray-300 bg-red-100 min-h-screen p-6 rounded-lg mt-6 shadow-md"
+          class="border border-gray-300 bg-gray-50 min-h-screen p-6 rounded-lg mt-6 shadow-md"
         >
-          <div class="flex flex-wrap gap-4 justify-start">
+          <div class="flex flex-wrap gap-4 justify-center">
             <div
               v-for="(hasDevice, device) in filteredDevices"
               :key="device"
-              class="flex flex-col items-center border border-gray-200 bg-white rounded-lg shadow hover:shadow-lg transition-all w-28 max-w-[130px] min-w-[100px] p-4 cursor-pointer"
+              class="flex flex-col items-center border border-gray-200 bg-white rounded-lg shadow-md hover:shadow-lg transition-all w-32 max-w-[150px] min-w-[120px] p-4 cursor-pointer transform hover:scale-105"
             >
               <router-link
                 :to="{
@@ -49,14 +49,17 @@
                 }"
                 class="flex flex-col items-center w-full"
               >
-                <div class="w-16 h-16 flex justify-center items-center mb-3">
+                <div class="w-20 h-20 flex justify-center items-center mb-4">
                   <img
                     :src="getDeviceIcon(device)"
                     class="w-full h-full object-contain"
+                    alt="device icon"
                   />
                 </div>
                 <div class="text-center">
-                  <p class="text-sm font-medium text-gray-800">{{ device }}</p>
+                  <p class="text-sm font-semibold text-gray-800">
+                    {{ device }}
+                  </p>
                   <div
                     class="w-3 h-3 rounded-full mt-2 mx-auto"
                     :class="hasDevice ? 'bg-green-500' : 'bg-gray-300'"
@@ -74,7 +77,7 @@
 
 <script setup>
 defineProps(["phoneId"]);
-import { ref, computed, onMounted, watch } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import Header from "./Header.vue";
 import { phoneUsers, getUserDevicesByCategory } from "@/js/phonedb";
@@ -121,5 +124,8 @@ const isIoTDevicesPage = computed(() => {
 </script>
 
 <style scoped>
-/* เพิ่มสไตล์ที่ต้องการ */
+/* เพิ่มสไตล์เพิ่มเติม */
+.text-center {
+  text-align: center;
+}
 </style>
